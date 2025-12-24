@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "Home",
+    "rooms": "Rooms",
+    "offers": "Offers",
+    "services": "Services",
+    "gallery": "Gallery",
+    "blog": "Blog",
+    "login": "Login",
+    "bookNow": "Book Now",
+    "about": "About Us",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "signup": "Sign Up"
+  },
+  "hero": {
+    "title1": "VIP UZBE",
+    "title2": "Experience the Epitome of Luxury",
+    "subtitle": "Discover a world of elegance and comfort in the heart of Uzbekistan. Your exclusive getaway awaits.",
+    "viewRooms": "View Rooms",
+    "contactUs": "Contact Us"
+  },
+  "rooms": {
+    "title": "Our Accommodations",
+    "subtitle": "Find your perfect space from our curated collection of elite rooms and suites.",
+    "search": "Search Rooms...",
+    "category": "Category",
+    "all": "All",
+    "onlyRooms": "Rooms",
+    "suites": "Suites",
+    "sortBy": "Sort By",
+    "priceLow": "Price: Low to High",
+    "priceHigh": "Price: High to Low",
+    "details": "Details",
+    "night": "/ night",
+    "bookNow": "Book Now"
+  },
+  "footer": {
+    "description": "The premier luxury hospitality destination in Uzbekistan.",
+    "links": "Quick Links",
+    "contact": "Contact Info",
+    "rights": "All rights reserved."
+  },
+  "bonus": {
+    "title": "A Royal Welcome Gift",
+    "subtitle": "As a valued VIP UZBE guest, please select your complementary fruit assortment for your arrival.",
+    "select": "Select Bonus",
+    "option1": "Fergana Valley Bounty",
+    "option1Desc": "Pomegranates, Figs, and Sweet Grapes from the fertile valley.",
+    "option2": "Samarkand Solar Mix",
+    "option2Desc": "Apricots, Golden Melons, and Premium Walnuts.",
+    "option3": "Global Elite Selection",
+    "option3Desc": "Dragonfruit, Pineapple, and Local Ruby Grapes.",
+    "confirm": "Confirm Selection"
+  }
+}

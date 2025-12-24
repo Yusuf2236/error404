@@ -1,0 +1,122 @@
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    background: transparent;
+    padding: 0 2rem;
+}
+
+.scrolled {
+    background: rgba(15, 23, 42, 0.95);
+    /* Deep Navy with opacity */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    height: 70px;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    letter-spacing: 2px;
+}
+
+.links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.links a {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.links a:hover {
+    color: var(--secondary-color);
+}
+
+.navActions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.loginBtn {
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.loginBtn:hover {
+    color: var(--secondary-color);
+}
+
+.bookBtn {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 0.75rem 1.25rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    transition: background-color 0.2s ease;
+}
+
+.bookBtn:hover {
+    background-color: var(--accent-color);
+}
+
+.langSwitcher {
+    display: flex;
+    gap: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.langSwitcher button {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s;
+}
+
+.langSwitcher button:hover {
+    color: var(--secondary-color);
+}
+
+.activeLang {
+    color: var(--secondary-color) !important;
+    border-bottom: 2px solid var(--secondary-color) !important;
+}
+
+@media (max-width: 900px) {
+    .links {
+        display: none;
+    }
+}

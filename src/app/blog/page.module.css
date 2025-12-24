@@ -1,0 +1,95 @@
+.main {
+    min-height: 100vh;
+    padding-top: 80px;
+    background-color: #f8fafc;
+}
+
+.header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.postGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.postCard {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.postImage {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+.postContent {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.postMeta {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.postContent h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.postContent p {
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.readMoreBtn {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.readMoreBtn:hover {
+    background-color: var(--primary-color) !important;
+    color: var(--white) !important;
+}
+
+@media (max-width: 768px) {
+    .postGrid {
+        grid-template-columns: 1fr;
+    }
+}

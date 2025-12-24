@@ -1,0 +1,132 @@
+.main {
+    min-height: 100vh;
+    padding-top: 80px;
+    background-image: linear-gradient(rgba(248, 245, 242, 0.9), rgba(248, 245, 242, 0.9)), url('https://images.unsplash.com/photo-1578991624414-276ef23a534f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.header {
+    height: 400px;
+    background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.overlay h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.overlay p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.content {
+    max-width: 1400px;
+    margin: -50px auto 0;
+    padding: 0 2rem 6rem;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 3rem;
+    position: relative;
+    z-index: 10;
+}
+
+.sidebarContent {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: sticky;
+    top: 100px;
+}
+
+.filterSection h3 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.filterInput,
+.filterSelect {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    background: var(--white);
+    font-family: inherit;
+    margin-bottom: 1rem;
+}
+
+.filterOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.filterOptions label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.roomsArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.resultsCount {
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1rem;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+}
+
+.noResults {
+    text-align: center;
+    padding: 6rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+}
+
+@media (max-width: 1000px) {
+    .content {
+        grid-template-columns: 1fr;
+        margin-top: 2rem;
+    }
+
+    .sidebarContent {
+        position: static;
+    }
+}

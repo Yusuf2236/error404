@@ -1,0 +1,56 @@
+{
+    "nav": {
+        "home": "Bosh sahifa",
+        "rooms": "Xonalar",
+        "offers": "Takliflar",
+        "services": "Xizmatlar",
+        "gallery": "Galereya",
+        "blog": "Blog",
+        "login": "Kirish",
+        "bookNow": "Band qilish",
+        "about": "Biz haqimizda",
+        "contact": "Aloqa",
+        "faq": "Savol-javob",
+        "signup": "Ro'yxatdan o'tish"
+    },
+    "hero": {
+        "title1": "VIP UZBE",
+        "title2": "Hashamatning oliy ko'rinishi",
+        "subtitle": "O'zbekiston markazida nafislik va qulaylik dunyosini kashf eting. Sizning eksklyuziv dam olishingiz kutmoqda.",
+        "viewRooms": "Xonalarni ko'rish",
+        "contactUs": "Biz bilan bog'laning"
+    },
+    "rooms": {
+        "title": "Bizning turar joylarimiz",
+        "subtitle": "Bizning elita xonalar va lyukslar to'plamimizdan o'zingizga mosini toping.",
+        "search": "Xonalarni qidirish...",
+        "category": "Toifa",
+        "all": "Barchasi",
+        "onlyRooms": "Xonalar",
+        "suites": "Lyukslar",
+        "sortBy": "Saralash",
+        "priceLow": "Narx: Arzonroq",
+        "priceHigh": "Narx: Qimmatroq",
+        "details": "Batafsil",
+        "night": "/ tun",
+        "bookNow": "Hozir band qiling"
+    },
+    "footer": {
+        "description": "O'zbekistondagi eng nufuzli hashamatli mehmonxona.",
+        "links": "Tezkor havolalar",
+        "contact": "Aloqa ma'lumotlari",
+        "rights": "Barcha huquqlar himoyalangan."
+    },
+    "bonus": {
+        "title": "Shohona kutib olish sovg'asi",
+        "subtitle": "VIP UZBE mehmoni sifatida, tashrifingiz uchun bepul meva assortimentini tanlang.",
+        "select": "Bonusni tanlash",
+        "option1": "Farg'ona vodiysi ne'matlari",
+        "option1Desc": "Serhosil vodiydan anor, anjir va shirin uzumlar.",
+        "option2": "Samarqand quyoshli miksi",
+        "option2Desc": "O'rik, tilla qovun va oliy navli yong'oqlar.",
+        "option3": "Global Elita tanlovi",
+        "option3Desc": "Drakonmeva, ananas va mahalliy yoqut uzumlar.",
+        "confirm": "Tanlovni tasdiqlash"
+    }
+}

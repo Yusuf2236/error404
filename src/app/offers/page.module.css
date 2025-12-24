@@ -1,0 +1,111 @@
+.main {
+    min-height: 100vh;
+    padding-top: 80px;
+    background-color: #f8fafc;
+}
+
+.header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.header p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.offersGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.offerCard {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 350px 1fr;
+}
+
+.image {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 300px;
+}
+
+.badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: var(--secondary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 2px;
+    letter-spacing: 1px;
+}
+
+.content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.content h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.content p {
+    color: #4b5563;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.priceInfo .label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.priceInfo .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+@media (max-width: 800px) {
+    .offerCard {
+        grid-template-columns: 1fr;
+    }
+}

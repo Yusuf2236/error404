@@ -1,0 +1,161 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.modal {
+    background: var(--white);
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.header {
+    background: var(--primary-color);
+    padding: 3rem;
+    text-align: center;
+    color: var(--white);
+    border-bottom: 4px solid var(--secondary-color);
+}
+
+.crownIcon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.header h2 {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.header p {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 3rem;
+    background: #f8fafc;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.active {
+    border-color: var(--secondary-color);
+    background: rgba(212, 175, 55, 0.05);
+    transform: scale(1.02);
+}
+
+.imageWrapper {
+    height: 200px;
+}
+
+.imageWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardContent {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.cardContent h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.cardContent p {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.checkMark {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+}
+
+.footer {
+    padding: 2.5rem;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 850px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        padding: 2rem;
+    }
+}
