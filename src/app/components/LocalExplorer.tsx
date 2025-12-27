@@ -12,13 +12,15 @@ export default function LocalExplorer() {
     const data: GuideItem[] = localGuideData[language as keyof typeof localGuideData] || localGuideData.en;
     const activeItem: GuideItem = data.find((item: GuideItem) => item.id === activeId) || data[0];
 
+    const currentLang = (['en', 'uz', 'ru'].includes(language) ? language : 'en') as 'en' | 'uz' | 'ru';
+
     const labels = {
         en: { title: "Elite Tashkent Guide", subtitle: "Curated landmarks for our distinguished guests." },
         uz: { title: "Toshkent Elita Yo'lboshchisi", subtitle: "Aziz mehmonlarimiz uchun saralangan manzillar." },
         ru: { title: "Элитный Гид по Ташкенту", subtitle: "Кураторская подборка достопримечательностей для наших гостей." }
     };
 
-    const t = labels[language as keyof typeof labels] || labels.en;
+    const t = labels[currentLang];
 
     return (
         <section className={styles.section}>
@@ -43,7 +45,15 @@ export default function LocalExplorer() {
 
                 <div className={styles.detailCard}>
                     <div className={styles.imageWrapper}>
-                        <img src={activeItem.img} alt={activeItem.name} className={styles.guideImg} loading="lazy" />
+                        <img
+                            src={activeItem.img}
+                            alt={activeItem.name}
+                            className={styles.guideImg}
+                            loading="lazy"
+                            onError={(e) => {
+                                (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60&fm=jpg";
+                            }}
+                        />
                     </div>
                     <div className={styles.content}>
                         <h3>{activeItem.name}</h3>
@@ -54,7 +64,7 @@ export default function LocalExplorer() {
                                 <span className={styles.infoLabel}>
                                     {language === "uz" ? "Kutilayotgan harajat" : language === "ru" ? "Примерная цена" : "Estimated Cost"}
                                 </span>
-                                <span className={styles.infoValue}>{activeItem.price[language as keyof typeof activeItem.price]}</span>
+                                <span className={styles.infoValue}>{activeItem.price[currentLang]}</span>
                             </div>
                             <div className={styles.infoItem}>
                                 <span className={styles.infoLabel}>
@@ -67,7 +77,7 @@ export default function LocalExplorer() {
                         </div>
 
                         <div className={styles.extendedDetails}>
-                            <p>{activeItem.details[language as keyof typeof activeItem.details]}</p>
+                            <p>{activeItem.details[currentLang]}</p>
                         </div>
 
                         <button className={styles.conciergeBtn}>
