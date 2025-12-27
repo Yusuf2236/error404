@@ -6,6 +6,7 @@ import Button from "./components/Button";
 import RoomCard from "./components/RoomCard";
 import LocalExplorer from "./components/LocalExplorer";
 import { useLanguage } from "./context/LanguageContext";
+import BusinessDashboard from "./components/BusinessDashboard";
 
 export default function Home() {
   const { dict, language } = useLanguage();
@@ -83,7 +84,7 @@ export default function Home() {
       <section className={`${styles.section} ${styles.bgWrapper}`}>
         <div className={styles.bgOverlay}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.whiteText}>Tashkent's Finest Amenities</h2>
+            <h2 className={styles.whiteText}>Tashkent&apos;s Finest Amenities</h2>
             <p className={styles.whiteText}>Traditional hospitality meets 21st-century luxury.</p>
           </div>
           <div className={styles.servicesGrid}>
@@ -111,6 +112,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Business Dashboard Section */}
+      <BusinessDashboard />
+
       {/* Local Explorer Section */}
       <LocalExplorer />
 
@@ -123,7 +127,7 @@ export default function Home() {
         <div className={styles.testimonialsGrid}>
           <div className={styles.testimonialCardGlass}>
             <div className={styles.stars}>★★★★★</div>
-            <p>"VIP UZBE is truly the crown jewel of Central Asia. Unparalleled privacy."</p>
+            <p>&quot;VIP UZBE is truly the crown jewel of Central Asia. Unparalleled privacy.&quot;</p>
             <div className={styles.guestInfo}>
               <strong>Rustam Ahmedov</strong>
               <span>CEO, Digital Uzbekistan</span>
@@ -131,7 +135,7 @@ export default function Home() {
           </div>
           <div className={styles.testimonialCardGlass}>
             <div className={styles.stars}>★★★★★</div>
-            <p>"The Amir Temur suite was a journey through time with all modern comforts."</p>
+            <p>&quot;The Amir Temur suite was a journey through time with all modern comforts.&quot;</p>
             <div className={styles.guestInfo}>
               <strong>Elena Petrova</strong>
               <span>Global Travel Editor</span>

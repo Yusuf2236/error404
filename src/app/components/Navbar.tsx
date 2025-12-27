@@ -33,6 +33,8 @@ export default function Navbar() {
                     <li><Link href="/rooms">{dict.nav.rooms}</Link></li>
                     <li><Link href="/offers">{dict.nav.offers}</Link></li>
                     <li><Link href="/services">{dict.nav.services}</Link></li>
+                    <li><Link href="/services/events">{dict.nav.events}</Link></li>
+                    <li><Link href="/corporate">{dict.nav.corporate}</Link></li>
                     <li><Link href="/gallery">{dict.nav.gallery}</Link></li>
                     <li><Link href="/blog">{dict.nav.blog}</Link></li>
                 </ul>

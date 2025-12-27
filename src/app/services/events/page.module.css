@@ -1,0 +1,140 @@
+.main {
+    min-height: 100vh;
+    background: #0a0a0a;
+    color: white;
+    padding-top: 80px;
+}
+
+.hero {
+    height: 60vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+.heroTitle {
+    font-size: 3.5rem;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.eventCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.eventCard:hover {
+    transform: translateY(-10px);
+    border-color: #d4af37;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.cardImage {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.cardContent {
+    padding: 2rem;
+}
+
+.cardContent h3 {
+    color: #d4af37;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.cardContent p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    color: #eee;
+    font-size: 0.95rem;
+}
+
+.features li::before {
+    content: "✓";
+    color: #d4af37;
+    font-weight: bold;
+}
+
+.bookBtn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.bookBtn:hover {
+    background: #d4af37;
+    color: #000;
+}
+
+.amenities {
+    background: rgba(212, 175, 55, 0.05);
+    padding: 4rem 2rem;
+    margin-top: 4rem;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.amenitiesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.amenityItem span {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+}

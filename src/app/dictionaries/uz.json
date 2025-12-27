@@ -10,8 +10,10 @@
         "bookNow": "Band qilish",
         "about": "Biz haqimizda",
         "contact": "Aloqa",
-        "faq": "Savol-javob",
-        "signup": "Ro'yxatdan o'tish"
+        "faq": "Ko'p so'raladigan savollar",
+        "signup": "Ro'yxatdan o'tish",
+        "events": "Tadbirlar",
+        "corporate": "Korporativ"
     },
     "hero": {
         "title1": "VIP UZBE",

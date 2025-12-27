@@ -48,7 +48,7 @@ export default function Login() {
                     </div>
 
                     <p className={styles.switchAuth}>
-                        Don't have an account? <Link href="/signup">Sign up</Link>
+                        Don&apos;t have an account? <Link href="/signup">Sign up</Link>
                     </p>
                 </div>
             </div>

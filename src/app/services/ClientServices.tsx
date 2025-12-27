@@ -35,6 +35,13 @@ export default function ClientServices() {
             en: { title: "VIP Chauffeur", desc: "Private luxury fleet including Rolls Royce and Maybach for your city explorations." },
             uz: { title: "VIP Shofyor", desc: "Sizning shahar sayohatlaringiz uchun Rolls Royce va Maybach avtomobillari floti." },
             ru: { title: "VIP Шофер", desc: "Частный парк роскошных автомобилей, включая Rolls Royce и Maybach." }
+        },
+        {
+            slug: "events",
+            icon: "🤝",
+            en: { title: "Conference & Events", desc: "High-tech meeting spaces and grand ballrooms for corporate events and international summits." },
+            uz: { title: "Konferensiya va Tadbirlar", desc: "Korporativ tadbirlar va xalqaro sammitlar uchun yuqori texnologiyali uchrashuv joylari va ball zallari." },
+            ru: { title: "Конференции и Мероприятия", desc: "Высокотехнологичные конференц-залы и бальные залы для корпоративных мероприятий и саммитов." }
         }
     ];
 
