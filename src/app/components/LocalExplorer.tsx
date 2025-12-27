@@ -48,6 +48,28 @@ export default function LocalExplorer() {
                     <div className={styles.content}>
                         <h3>{activeItem.name}</h3>
                         <p className={styles.desc}>{activeItem.desc}</p>
+
+                        <div className={styles.infoGrid}>
+                            <div className={styles.infoItem}>
+                                <span className={styles.infoLabel}>
+                                    {language === "uz" ? "Kutilayotgan harajat" : language === "ru" ? "Примерная цена" : "Estimated Cost"}
+                                </span>
+                                <span className={styles.infoValue}>{activeItem.price[language as keyof typeof activeItem.price]}</span>
+                            </div>
+                            <div className={styles.infoItem}>
+                                <span className={styles.infoLabel}>
+                                    {language === "uz" ? "Joylashuv" : language === "ru" ? "Местоположение" : "Location"}
+                                </span>
+                                <a href={activeItem.locationUrl} target="_blank" rel="noopener noreferrer" className={styles.locationLink}>
+                                    📍 {language === "uz" ? "Xaritada ochish" : language === "ru" ? "Открыть карту" : "Open in Maps"}
+                                </a>
+                            </div>
+                        </div>
+
+                        <div className={styles.extendedDetails}>
+                            <p>{activeItem.details[language as keyof typeof activeItem.details]}</p>
+                        </div>
+
                         <button className={styles.conciergeBtn}>
                             {language === "uz" ? "Borishni tashkil qilish" : language === "ru" ? "Заказать трансфер" : "Arrange Visit"}
                         </button>

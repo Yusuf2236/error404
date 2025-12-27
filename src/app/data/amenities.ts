@@ -494,6 +494,9 @@ export interface GuideItem {
     name: string;
     desc: string;
     img: string;
+    price: { en: string; uz: string; ru: string };
+    locationUrl: string;
+    details: { en: string; uz: string; ru: string };
 }
 
 export interface LocalGuideData {
@@ -504,27 +507,171 @@ export interface LocalGuideData {
 
 export const localGuideData: LocalGuideData = {
     en: [
-        { id: 1, name: "Amir Temur Square", desc: "The symbolic heart of Tashkent, featuring the majestic statue of Amir Temur and surrounded by architectural landmarks.", img: "https://images.unsplash.com/photo-1578991624414-276ef23a534f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 2, name: "Hast Imam Complex", desc: "The spiritual center of Tashkent, home to the world-famous Samarkand Kufic Quran and stunning Islamic architecture.", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 3, name: "Chorsu Bazaar", desc: "The legendary blue-domed bazaar where the Silk Road spirit lives on through spices, silks, and traditional crafts.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 4, name: "Tashkent TV Tower", desc: "One of the tallest structures in Central Asia, offering a revolving restaurant and breathtaking views of the entire city.", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 5, name: "Minor Mosque", desc: "Known as the 'White Mosque', this modern masterpiece in white marble stands as a symbol of contemporary Uzbek craftsmanship.", img: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 6, name: "Independence Square", desc: "A sprawling complex of fountains, colonnades, and monuments celebrating the sovereign spirit of modern Uzbekistan.", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+        {
+            id: 1,
+            name: "Amir Temur Square",
+            desc: "The symbolic heart of Tashkent, featuring the majestic statue of Amir Temur and surrounded by architectural landmarks.",
+            img: "https://images.unsplash.com/photo-1633519391054-6e691238992f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry", uz: "Girish bepul", ru: "Вход бесплатный" },
+            locationUrl: "https://maps.app.goo.gl/B7T2j6DqfK7R3S6A9",
+            details: { en: "The square is surrounded by the Hotel Uzbekistan, University of Law, and the famous Chimes. It's a perfect place for evening walks.", uz: "Maydon O'zbekiston mehmonxonasi, Yuridik universiteti va mashhur Qo'ng'iroq minorasi bilan o'ralgan. Kechki sayr uchun ajoyib joy.", ru: "Площадь окружена отелем «Узбекистан», Юридическим университетом и знаменитыми курантами. Это идеальное место для вечерних прогулок." }
+        },
+        {
+            id: 2,
+            name: "Hast Imam Complex",
+            desc: "The spiritual center of Tashkent, home to the world-famous Samarkand Kufic Quran and stunning Islamic architecture.",
+            img: "https://images.unsplash.com/photo-1596484552934-2e2167fc7f54?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Museum Entry: $2", uz: "Muzeyga kirish: 25,000 so'm", ru: "Вход в музей: 25 000 сум" },
+            locationUrl: "https://maps.app.goo.gl/p5Z1FmE9kY6o7U8y7",
+            details: { en: "Visit the library containing the 7th-century Quran. The complex also features high-quality traditional craft shops.", uz: "7-asrga oid Usmon Qur'oni saqlanadigan kutubxonani ko'ring. Majmuada hunarmandchilik do'konlari ham mavjud.", ru: "Посетите библиотеку с Кораном VII века. В комплексе также расположены магазины традиционных ремесел." }
+        },
+        {
+            id: 3,
+            name: "Chorsu Bazaar",
+            desc: "The legendary blue-domed bazaar where the Silk Road spirit lives on through spices, silks, and traditional crafts.",
+            img: "https://images.unsplash.com/photo-1590408542045-81640a3f8510?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry (Shopping extra)", uz: "Girish bepul (Savdo alohida)", ru: "Вход бесплатный (Покупки отдельно)" },
+            locationUrl: "https://maps.app.goo.gl/m3K8LzC9y4n5P6Q7A",
+            details: { en: "Best place for national food, traditional fabrics, and fresh fruits. Visit the 'Food Court' for authentic Tashkent street food.", uz: "Milliy taomlar, an'anaviy matolar va yangi mevalar uchun eng yaxshi joy. 'Ovqatlanish qatori'da haqiqiy Toshkent ko'cha taomlarini tatib ko'ring.", ru: "Лучшее место для национальной еды, традиционных тканей и свежих фруктов. Посетите «Обжорный ряд» для дегустации уличной еды." }
+        },
+        {
+            id: 4,
+            name: "Tashkent TV Tower",
+            desc: "One of the tallest structures in Central Asia, offering a revolving restaurant and breathtaking views of the entire city.",
+            img: "https://images.unsplash.com/photo-1574786198875-49f5d09ec7d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Ticket: $4-6", uz: "Chipta: 50,000 - 70,000 so'm", ru: "Билет: 50 000 - 70 000 сум" },
+            locationUrl: "https://maps.app.goo.gl/k9LzC3M7n2P5Q6R8B",
+            details: { en: "The observation deck is 94 meters high. Enjoy a meal at the 'Koinot' restaurant which revolves every 45 minutes.", uz: "Kuzatuv maydonchasi 94 metr balandlikda. Har 45 daqiqada aylanadigan 'Koinot' restoranida taomlanishingiz mumkin.", ru: "Смотровая площадка на высоте 94 метра. Насладитесь трапезой в ресторане «Коинот», который вращается каждые 45 минут." }
+        },
+        {
+            id: 5,
+            name: "Minor Mosque",
+            desc: "Known as the 'White Mosque', this modern masterpiece in white marble stands as a symbol of contemporary Uzbek craftsmanship.",
+            img: "https://images.unsplash.com/photo-1590050731053-15bfd436ec56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry", uz: "Girish bepul", ru: "Вход бесплатный" },
+            locationUrl: "https://maps.app.goo.gl/n8MzC4N8m3Q6R7S9C",
+            details: { en: "Opened in 2014, it can accommodate over 2,400 worshippers. The interior features complex gold leaf calligraphy.", uz: "2014-yilda ochilgan, 2400 dan ortiq namozxonni sig'dira oladi. Ichki qismi tilla suvi yugurtirilgan xattotlik namunalari bilan bezatilgan.", ru: "Открытая в 2014 году, мечеть вмещает более 2400 человек. Интерьер украшен сложной каллиграфией сусальным золотом." }
+        },
+        {
+            id: 6,
+            name: "Independence Square",
+            desc: "A sprawling complex of fountains, colonnades, and monuments celebrating the sovereign spirit of modern Uzbekistan.",
+            img: "https://images.unsplash.com/photo-1590076241270-d790733d0d1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry", uz: "Girish bepul", ru: "Вход бесплатный" },
+            locationUrl: "https://maps.app.goo.gl/p9NzC5P9n4R7S8T0D",
+            details: { en: "Features the 'Memory and Hope' monument. It's the site of major national celebrations and a symbol of pride.", uz: "Bu yerda 'Motamsaro ona' haykali joylashgan. Davlat bayramlari o'tkaziladigan va milliy g'urur timsoli sanalgan maydon.", ru: "Здесь находится монумент «Скорбящая мать». Место проведения главных государственных праздников и символ национальной гордости." }
+        }
     ],
     uz: [
-        { id: 1, name: "Amir Temur Xiyoboni", desc: "Toshkentning ramziy yuragi, Amir Temurning ulug'vor haykali va me'moriy yodgorliklar bilan o'ralgan majmua.", img: "https://images.unsplash.com/photo-1578991624414-276ef23a534f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 2, name: "Hazrati Imom Majmuasi", desc: "Toshkentning ma'naviy markazi, dunyoga mashhur Usmon Qur'oni va go'zal islomiy me'morchilik namunasi.", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 3, name: "Chorsu Bozori", desc: "Moviy gumbazli afsonaviy bozor, bu yerda Ipak yo'li ruhi ziravorlar, ipak va milliy hunarmandchilik orqali yashaydi.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 4, name: "Toshkent Teleminorasi", desc: "O'rta Osiyodagi eng baland inshootlardan biri, aylanma restoran va butun shaharning hayratlanarli manzaralarini taqdim etadi.", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 5, name: "Minor Masjidi", desc: "Oq masjid nomi bilan tanilgan, oq marmardan ishlangan ushbu zamonaviy durdona o'zbek hunarmandchiligining yuksak namunasidir.", img: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 6, name: "Mustaqillik Maydoni", desc: "Zamonaviy O'zbekistonning suveren ruhini tarannum etuvchi favvoralar, ustunlar va yodgorliklarning keng majmuasi.", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+        {
+            id: 1,
+            name: "Amir Temur Xiyoboni",
+            desc: "Toshkentning ramziy yuragi, Amir Temurning ulug'vor haykali va me'moriy yodgorliklar bilan o'ralgan majmua.",
+            img: "https://images.unsplash.com/photo-1633519391054-6e691238992f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry", uz: "Girish bepul", ru: "Вход бесплатный" },
+            locationUrl: "https://maps.app.goo.gl/B7T2j6DqfK7R3S6A9",
+            details: { en: "The square is surrounded by the Hotel Uzbekistan, University of Law, and the famous Chimes. It's a perfect place for evening walks.", uz: "Maydon O'zbekiston mehmonxonasi, Yuridik universiteti va mashhur Qo'ng'iroq minorasi bilan o'ralgan. Kechki sayr uchun ajoyib joy.", ru: "Площадь окружена отелем «Узбекистан», Юридическим университером и знаменитыми курантами. Это идеальное место для вечерних прогулок." }
+        },
+        {
+            id: 2,
+            name: "Hazrati Imom Majmuasi",
+            desc: "Toshkentning ma'naviy markazi, dunyoga mashhur Usmon Qur'oni va go'zal islomiy me'morchilik namunasi.",
+            img: "https://images.unsplash.com/photo-1596484552934-2e2167fc7f54?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Museum Entry: $2", uz: "Muzeyga kirish: 25,000 so'm", ru: "Вход в музей: 25 000 сум" },
+            locationUrl: "https://maps.app.goo.gl/p5Z1FmE9kY6o7U8y7",
+            details: { en: "Visit the library containing the 7th-century Quran. The complex also features high-quality traditional craft shops.", uz: "7-asrga oid Usmon Qur'oni saqlanadigan kutubxonani ko'ring. Majmuada hunarmandchilik do'konlari ham mavjud.", ru: "Посетите библиотеку с Кораном VII века. В комплексе также расположены магазины традиционных ремесел." }
+        },
+        {
+            id: 3,
+            name: "Chorsu Bozori",
+            desc: "Moviy gumbazli afsonaviy bozor, bu yerda Ipak yo'li ruhi ziravorlar, ipak va milliy hunarmandchilik orqali yashaydi.",
+            img: "https://images.unsplash.com/photo-1590408542045-81640a3f8510?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry (Shopping extra)", uz: "Girish bepul (Savdo alohida)", ru: "Вход бесплатный (Покупки отдельно)" },
+            locationUrl: "https://maps.app.goo.gl/m3K8LzC9y4n5P6Q7A",
+            details: { en: "Best place for national food, traditional fabrics, and fresh fruits. Visit the 'Food Court' for authentic Tashkent street food.", uz: "Milliy taomlar, an'anaviy matolar va yangi mevalar uchun eng yaxshi joy. 'Ovqatlanish qatori'da haqiqiy Toshkent ko'cha taomlarini tatib ko'ring.", ru: "Лучшее место для национальной еды, традиционных тканей и свежих фруктов. Посетите «Обжорный ряд» для дегустации уличной еды." }
+        },
+        {
+            id: 4,
+            name: "Toshkent Teleminorasi",
+            desc: "O'rta Osiyodagi eng baland inshootlardan biri, aylanma restoran va butun shaharning hayratlanarli manzaralarini taqdim etadi.",
+            img: "https://images.unsplash.com/photo-1574786198875-49f5d09ec7d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Ticket: $4-6", uz: "Chipta: 50,000 - 70,000 so'm", ru: "Билет: 50 000 - 70 000 сум" },
+            locationUrl: "https://maps.app.goo.gl/k9LzC3M7n2P5Q6R8B",
+            details: { en: "The observation deck is 94 meters high. Enjoy a meal at the 'Koinot' restaurant which revolves every 45 minutes.", uz: "Kuzatuv maydonchasi 94 metr balandlikda. Har 45 daqiqada aylanadigan 'Koinot' restoranida taomlanishingiz mumkin.", ru: "Смотровая площадка на высоте 94 метра. Насладитесь трапезой в ресторане «Коинот», который вращается каждые 45 минут." }
+        },
+        {
+            id: 5,
+            name: "Minor Masjidi",
+            desc: "Oq masjid nomi bilan tanilgan, oq marmardan ishlangan ushbu zamonaviy durdona o'zbek hunarmandchiligining yuksak namunasidir.",
+            img: "https://images.unsplash.com/photo-1590050731053-15bfd436ec56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry", uz: "Girish bepul", ru: "Вход бесплатный" },
+            locationUrl: "https://maps.app.goo.gl/n8MzC4N8m3Q6R7S9C",
+            details: { en: "Opened in 2014, it can accommodate over 2,400 worshippers. The interior features complex gold leaf calligraphy.", uz: "2014-yilda ochilgan, 2400 dan ortiq namozxonni sig'dira oladi. Ichki qismi tilla suvi yugurtirilgan xattotlik namunalari bilan bezatilgan.", ru: "Открытая в 2014 году, мечеть вмещает более 2400 человек. Интерьер украшен сложной каллиграфией сусальным золотом." }
+        },
+        {
+            id: 6,
+            name: "Mustaqillik Maydoni",
+            desc: "Zamonaviy O'zbekistonning suveren ruhini tarannum etuvchi favvoralar, ustunlar va yodgorliklarning keng majmuasi.",
+            img: "https://images.unsplash.com/photo-1590076241270-d790733d0d1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry", uz: "Girish bepul", ru: "Вход бесплатный" },
+            locationUrl: "https://maps.app.goo.gl/p9NzC5P9n4R7S8T0D",
+            details: { en: "Features the 'Memory and Hope' monument. It's the site of major national celebrations and a symbol of pride.", uz: "Bu yerda 'Motamsaro ona' haykali joylashgan. Davlat bayramlari o'tkaziladigan va milliy g'urur timsoli sanalgan maydon.", ru: "Здесь находится монумент «Скорбящая мать». Место проведения главных государственных праздников и символ национальной гордости." }
+        }
     ],
     ru: [
-        { id: 1, name: "Сквер Амира Темура", desc: "Символическое сердце Ташкента с величественной статуей Амира Темура, окруженное архитектурными памятниками.", img: "https://images.unsplash.com/photo-1578991624414-276ef23a534f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 2, name: "Комплекс Хаст Имам", desc: "Духовный центр Ташкента, где хранится всемирно известный Коран Османа и представлена великолепная исламская архитектура.", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 3, name: "Базар Чорсу", desc: "Легендарный базар под голубыми куполами, где дух Шелкового пути живет в ароматах специй, шелках и национальных ремеслах.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 4, name: "Ташкентская телебашня", desc: "Одно из самых высоких сооружений в Центральной Азии с вращающимся рестораном и захватывающим видом на весь город.", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 5, name: "Мечеть Минор", desc: "Известная как 'Белая мечеть', этот современный шедевр из белого мрамора является символом современного узбекского мастерства.", img: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 6, name: "Площадь Независимости", desc: "Обширный комплекс фонтанов, колоннад и монументов, воспевающих суверенный дух современного Узбекистана.", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+        {
+            id: 1,
+            name: "Сквер Амира Темура",
+            desc: "Символическое сердце Ташкента с величественной статуей Амира Темура, окруженное архитектурными памятниками.",
+            img: "https://images.unsplash.com/photo-1633519391054-6e691238992f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry", uz: "Girish bepul", ru: "Вход бесплатный" },
+            locationUrl: "https://maps.app.goo.gl/B7T2j6DqfK7R3S6A9",
+            details: { en: "The square is surrounded by the Hotel Uzbekistan, University of Law, and the famous Chimes. It's a perfect place for evening walks.", uz: "Maydon O'zbekiston mehmonxonasi, Yuridik universiteti va mashhur Qo'ng'iroq minorasi bilan o'ralgan. Kechki sayr uchun ajoyib joy.", ru: "Площадь окружена отелем «Узбекистан», Юридическим университетом и знаменитыми курантами. Это идеальное место для вечерних прогулок." }
+        },
+        {
+            id: 2,
+            name: "Комплекс Хаст Имам",
+            desc: "Духовный центр Ташкента, где хранится всемирно известный Коран Османа и представлена великолепная исламская архитектура.",
+            img: "https://images.unsplash.com/photo-1596484552934-2e2167fc7f54?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Museum Entry: $2", uz: "Muzeyga kirish: 25,000 so'm", ru: "Вход в музей: 25 000 сум" },
+            locationUrl: "https://maps.app.goo.gl/p5Z1FmE9kY6o7U8y7",
+            details: { en: "Visit the library containing the 7th-century Quran. The complex also features high-quality traditional craft shops.", uz: "7-asrga oid Usmon Qur'oni saqlanadigan kutubxonani ko'ring. Majmuada hunarmandchilik do'konlari ham mavjud.", ru: "Посетите библиотеку с Кораном VII века. В комплексе также расположены магазины традиционных ремесел." }
+        },
+        {
+            id: 3,
+            name: "Базар Чорсу",
+            desc: "Легендарный базар под голубыми куполами, где дух Шелкового пути живет в ароматах специй, шелках и национальных ремеслах.",
+            img: "https://images.unsplash.com/photo-1590408542045-81640a3f8510?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry (Shopping extra)", uz: "Girish bepul (Savdo alohida)", ru: "Вход бесплатный (Покупки отдельно)" },
+            locationUrl: "https://maps.app.goo.gl/m3K8LzC9y4n5P6Q7A",
+            details: { en: "Best place for national food, traditional fabrics, and fresh fruits. Visit the 'Food Court' for authentic Tashkent street food.", uz: "Milliy taomlar, an'anaviy matolar va yangi mevalar uchun eng yaxshi joy. 'Ovqatlanish qatori'da haqiqiy Toshkent ko'cha taomlarini tatib ko'ring.", ru: "Лучшее место для национальной еды, традиционных тканей и свежих фруктов. Посетите «Обжорный ряд» для дегустации уличной еды." }
+        },
+        {
+            id: 4,
+            name: "Ташкентская телебашня",
+            desc: "Одно из самых высоких сооружений в Центральной Азии с вращающимся рестораном и захватывающим видом на весь город.",
+            img: "https://images.unsplash.com/photo-1574786198875-49f5d09ec7d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Ticket: $4-6", uz: "Chipta: 50,000 - 70,000 so'm", ru: "Билет: 50 000 - 70 000 сум" },
+            locationUrl: "https://maps.app.goo.gl/k9LzC3M7n2P5Q6R8B",
+            details: { en: "The observation deck is 94 meters high. Enjoy a meal at the 'Koinot' restaurant which revolves every 45 minutes.", uz: "Kuzatuv maydonchasi 94 metr balandlikda. Har 45 daqiqada aylanadigan 'Koinot' restoranida taomlanishingiz mumkin.", ru: "Смотровая площадка на высоте 94 метра. Насладитесь трапезой в ресторане «Коинот», который вращается каждые 45 минут." }
+        },
+        {
+            id: 5,
+            name: "Мечеть Минор",
+            desc: "Известная как 'Белая мечеть', этот современный шедевр из белого мрамора является символом современного узбекского мастерства.",
+            img: "https://images.unsplash.com/photo-1590050731053-15bfd436ec56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry", uz: "Girish bepul", ru: "Вход бесплатный" },
+            locationUrl: "https://maps.app.goo.gl/n8MzC4N8m3Q6R7S9C",
+            details: { en: "Opened in 2014, it can accommodate over 2,400 worshippers. The interior features complex gold leaf calligraphy.", uz: "2014-yilda ochilgan, 2400 dan ortiq namozxonni sig'dira oladi. Ichki qismi tilla suvi yugurtirilgan xattotlik namunalari bilan bezatilgan.", ru: "Открытая в 2014 году, мечеть вмещает более 2400 человек. Интерьер украшен сложной каллиграфией сусальным золотом." }
+        },
+        {
+            id: 6,
+            name: "Площадь Независимости",
+            desc: "Обширный комплекс фонтанов, колоннад и монументов, воспевающих суверенный дух современного Узбекистана.",
+            img: "https://images.unsplash.com/photo-1590076241270-d790733d0d1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            price: { en: "Free Entry", uz: "Girish bepul", ru: "Вход бесплатный" },
+            locationUrl: "https://maps.app.goo.gl/p9NzC5P9n4R7S8T0D",
+            details: { en: "Features the 'Memory and Hope' monument. It's the site of major national celebrations and a symbol of pride.", uz: "Bu yerda 'Motamsaro ona' haykali joylashgan. Davlat bayramlari o'tkaziladigan va milliy g'urur timsoli sanalgan maydon.", ru: "Здесь находится монумент «Скорбящая мать». Место проведения главных государственных праздников и символ национальной гордости." }
+        }
     ]
 };
