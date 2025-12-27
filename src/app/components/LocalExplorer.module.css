@@ -1,9 +1,240 @@
 .section {
     padding: 80px 5%;
-    background: rgba(10, 15, 30, 0.4);
+    background: linear-gradient(135deg, rgba(10, 15, 30, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
     backdrop-filter: blur(10px);
     margin: 40px 0;
 }
+
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.goldTitle {
+    color: #d4af37;
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.explorerContainer {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+.mapSidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.markerBtn {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    text-align: left;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.markerBtn:hover {
+    background: rgba(212, 175, 55, 0.15);
+    transform: translateX(10px);
+    border-color: #d4af37;
+}
+
+.markerBtn.active {
+    background: rgba(212, 175, 55, 0.25);
+    border-color: #d4af37;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.markerCircle {
+    width: 32px;
+    height: 32px;
+    background: #d4af37;
+    color: #0a0f1e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+.markerName {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.detailCard {
+    flex: 2;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 20px;
+    overflow: hidden;
+    position: sticky;
+    top: 100px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.imageWrapper {
+    height: 400px;
+    overflow: hidden;
+}
+
+.guideImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+}
+
+.detailCard:hover .guideImg {
+    transform: scale(1.05);
+}
+
+.content {
+    padding: 30px;
+    background: rgba(10, 15, 30, 0.95);
+}
+
+.content h3 {
+    color: #d4af37;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.desc {
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.conciergeBtn {
+    background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+    color: #0a111b;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.conciergeBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.infoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.infoLabel {
+    color: #d4af37;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.infoValue {
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.locationLink {
+    color: #000;
+    background: #d4af37;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+    width: fit-content;
+}
+
+.locationLink:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+.extendedDetails {
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.85);
+    font-style: italic;
+    line-height: 1.6;
+    border-left: 3px solid #d4af37;
+    padding-left: 20px;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+    .explorerContainer {
+        flex-direction: column;
+    }
+
+    .mapSidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+
+    .markerBtn {
+        min-width: 250px;
+    }
+
+    .detailCard {
+        position: static;
+    }
+}
+
 
 .header {
     text-align: center;
