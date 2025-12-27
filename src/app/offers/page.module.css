@@ -1,13 +1,12 @@
 .main {
     min-height: 100vh;
-    padding-top: 80px;
     background-color: #f8fafc;
 }
 
 .header {
     background-color: var(--primary-color);
     color: var(--white);
-    padding: 6rem 2rem;
+    padding: 10rem 2rem 6rem;
     text-align: center;
 }
 
