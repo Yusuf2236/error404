@@ -4,11 +4,9 @@ import { useState } from "react";
 import Button from "../components/Button";
 import styles from "./page.module.css";
 import { useLanguage } from "../context/LanguageContext";
-import FruitSelection from "../components/FruitSelection";
 
 export default function Booking() {
     const { dict, language } = useLanguage();
-    const [showBonus, setShowBonus] = useState(false);
     const [isConfirmed, setIsConfirmed] = useState(false);
     const [formData, setFormData] = useState({
         checkIn: "",
@@ -26,11 +24,6 @@ export default function Booking() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setShowBonus(true);
-    };
-
-    const handleFruitConfirm = (selection: string) => {
-        setShowBonus(false);
         setIsConfirmed(true);
     };
 
@@ -41,9 +34,9 @@ export default function Booking() {
                     <div className={styles.successCard}>
                         <span className={styles.successIcon}>✨</span>
                         <h2>{language === "uz" ? "Muvaffaqiyatli band qilindi!" : language === "ru" ? "Успешно забронировано!" : "Booking Successful!"}</h2>
-                        <p>{language === "uz" ? "VIP UZBE ni tanlaganingiz uchun rahmat. Siz tanlagan meva assortimenti xonangizda kutadi." : "Thank you for choosing VIP UZBE. Your selected fruit assortment will be waiting in your room."}</p>
+                        <p>{language === "uz" ? "VIP UZBE ni tanlaganingiz uchun rahmat. Tez orada siz bilan bog'lanamiz." : language === "ru" ? "Спасибо за выбор VIP UZBE. Мы свяжемся с вами в ближайшее время." : "Thank you for choosing VIP UZBE. We will contact you shortly."}</p>
                         <Button onClick={() => window.location.href = "/"} variant="primary">
-                            {language === "uz" ? "Bosh sahifaga qaytish" : "Back to Home"}
+                            {language === "uz" ? "Bosh sahifaga qaytish" : language === "ru" ? "Вернуться на главную" : "Back to Home"}
                         </Button>
                     </div>
                 </div>
@@ -53,7 +46,6 @@ export default function Booking() {
 
     return (
         <main className={styles.main}>
-            {showBonus && <FruitSelection onConfirm={handleFruitConfirm} />}
 
             <div className={styles.container}>
                 <div className={styles.formWrapper}>
