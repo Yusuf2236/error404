@@ -43,16 +43,39 @@
     "contact": "Contact Info",
     "rights": "All rights reserved."
   },
-  "bonus": {
-    "title": "A Royal Welcome Gift",
-    "subtitle": "As a valued VIP UZBE guest, please select your complementary fruit assortment for your arrival.",
-    "select": "Select Bonus",
-    "option1": "Fergana Valley Bounty",
-    "option1Desc": "Pomegranates, Figs, and Sweet Grapes from the fertile valley.",
-    "option2": "Samarkand Solar Mix",
-    "option2Desc": "Apricots, Golden Melons, and Premium Walnuts.",
-    "option3": "Global Elite Selection",
-    "option3Desc": "Dragonfruit, Pineapple, and Local Ruby Grapes.",
-    "confirm": "Confirm Selection"
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about your stay at VIP UZBE",
+    "q1": "What are the check-in and check-out times?",
+    "a1": "Check-in is from 2:00 PM and check-out is until 12:00 PM. Early check-in and late check-out are available upon request, subject to availability.",
+    "q2": "Do you offer airport transfer services?",
+    "a2": "Yes, we provide complimentary airport transfers for all suite bookings. Standard room guests can arrange transfers at a nominal fee through our concierge.",
+    "q3": "Is breakfast included in the room rate?",
+    "a3": "A gourmet breakfast buffet is included with all bookings. We offer international and traditional Uzbek cuisine options.",
+    "q4": "What payment methods do you accept?",
+    "a4": "We accept all major credit cards (Visa, Mastercard, American Express), cash in UZS and USD, and bank transfers.",
+    "q5": "Do you have facilities for business meetings?",
+    "a5": "Yes, we have state-of-the-art conference rooms and event spaces with full AV equipment, catering services, and dedicated support staff.",
+    "q6": "Is Wi-Fi available throughout the hotel?",
+    "a6": "High-speed Wi-Fi is complimentary throughout the entire property, including all rooms, public areas, and event spaces."
+  },
+  "testimonials": {
+    "title": "What Our Guests Say",
+    "subtitle": "Experiences from distinguished travelers",
+    "guest1": {
+      "name": "James Richardson",
+      "location": "London, UK",
+      "text": "Exceptional service and stunning accommodations. The attention to detail is remarkable. VIP UZBE truly lives up to its name."
+    },
+    "guest2": {
+      "name": "Maria Gonzalez",
+      "location": "Madrid, Spain",
+      "text": "The perfect blend of traditional Uzbek hospitality and modern luxury. The staff went above and beyond to make our stay memorable."
+    },
+    "guest3": {
+      "name": "David Chen",
+      "location": "Singapore",
+      "text": "Outstanding business facilities and the concierge service is world-class. Highly recommended for both business and leisure travelers."
+    }
   }
 }

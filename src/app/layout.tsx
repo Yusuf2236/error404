@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import AIChatBot from "./components/AIChatBot";
 import AudioPlayer from "./components/AudioPlayer";
 import RoyalConcierge from "./components/RoyalConcierge";
+import ContactWidget from "./components/ContactWidget";
 import "./globals.css";
 import { LanguageProvider } from "./context/LanguageContext";
 
@@ -52,6 +53,7 @@ export default function RootLayout({
         <LanguageProvider>
           <Navbar />
           {children}
+          <ContactWidget />
           <AIChatBot />
           <AudioPlayer />
           <RoyalConcierge />

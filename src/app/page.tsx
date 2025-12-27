@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import Button from "./components/Button";
 import RoomCard from "./components/RoomCard";
 import LocalExplorer from "./components/LocalExplorer";
+import FAQ from "./components/FAQ";
 import { useLanguage } from "./context/LanguageContext";
 import BusinessDashboard from "./components/BusinessDashboard";
 
@@ -117,6 +118,9 @@ export default function Home() {
 
       {/* Local Explorer Section */}
       <LocalExplorer />
+
+      {/* FAQ Section */}
+      <FAQ />
 
       {/* Testimonials Section */}
       <section className={styles.section}>

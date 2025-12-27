@@ -43,16 +43,39 @@
         "contact": "Aloqa ma'lumotlari",
         "rights": "Barcha huquqlar himoyalangan."
     },
-    "bonus": {
-        "title": "Shohona kutib olish sovg'asi",
-        "subtitle": "VIP UZBE mehmoni sifatida, tashrifingiz uchun bepul meva assortimentini tanlang.",
-        "select": "Bonusni tanlash",
-        "option1": "Farg'ona vodiysi ne'matlari",
-        "option1Desc": "Serhosil vodiydan anor, anjir va shirin uzumlar.",
-        "option2": "Samarqand quyoshli miksi",
-        "option2Desc": "O'rik, tilla qovun va oliy navli yong'oqlar.",
-        "option3": "Global Elita tanlovi",
-        "option3Desc": "Drakonmeva, ananas va mahalliy yoqut uzumlar.",
-        "confirm": "Tanlovni tasdiqlash"
+    "faq": {
+        "title": "Ko'p so'raladigan savollar",
+        "subtitle": "VIP UZBE'da qolish haqida bilishingiz kerak bo'lgan hamma narsa",
+        "q1": "Kirish va chiqish vaqtlari qanday?",
+        "a1": "Kirish soat 14:00 dan, chiqish esa soat 12:00 gacha. Erta kirish va kech chiqish mavjudligi asosida so'rov bo'yicha taqdim etiladi.",
+        "q2": "Aeroport transferi xizmati bormi?",
+        "a2": "Ha, barcha lyuks xonalar uchun bepul aeroport transferi taqdim etamiz. Oddiy xonalar uchun konsyerj orqali nominal to'lov evaziga tartibga solish mumkin.",
+        "q3": "Nonushta xona narxiga kiritilganmi?",
+        "a3": "Gurme nonushta bufeti barcha bronlar bilan birga kiritilgan. Xalqaro va an'anaviy o'zbek oshxonasi variantlarini taklif etamiz.",
+        "q4": "Qanday to'lov usullarini qabul qilasiz?",
+        "a4": "Barcha asosiy kredit kartalar (Visa, Mastercard, American Express), UZS va USD naqd pul hamda bank o'tkazmalarini qabul qilamiz.",
+        "q5": "Biznes uchrashuvlar uchun imkoniyatlaringiz bormi?",
+        "a5": "Ha, bizda to'liq AV jihozlar, ovqatlanish xizmatlari va maxsus yordam xodimlari bilan zamonaviy konferentsiya xonalari va tadbir maydonlari mavjud.",
+        "q6": "Mehmonxonada Wi-Fi mavjudmi?",
+        "a6": "Yuqori tezlikdagi Wi-Fi butun bino bo'ylab, jumladan barcha xonalar, umumiy joylar va tadbir maydonlarida bepul taqdim etiladi."
+    },
+    "testimonials": {
+        "title": "Mehmonlarimiz fikri",
+        "subtitle": "Nufuzli sayohatchilarning tajribalari",
+        "guest1": {
+            "name": "Jeyms Richardson",
+            "location": "London, Buyuk Britaniya",
+            "text": "Ajoyib xizmat va hayratlanarli turar joylar. Tafsilotlarga e'tibor ajoyib. VIP UZBE haqiqatan ham o'z nomiga loyiq."
+        },
+        "guest2": {
+            "name": "Mariya Gonsales",
+            "location": "Madrid, Ispaniya",
+            "text": "An'anaviy o'zbek mehmondo'stligi va zamonaviy hashamatning mukammal uyg'unligi. Xodimlar bizning qolishimizni esda qolarli qilish uchun juda ko'p harakat qilishdi."
+        },
+        "guest3": {
+            "name": "Devid Chen",
+            "location": "Singapur",
+            "text": "Ajoyib biznes imkoniyatlari va konsyerj xizmati jahon darajasida. Biznes va dam olish sayohatchilari uchun juda tavsiya etiladi."
+        }
     }
 }
