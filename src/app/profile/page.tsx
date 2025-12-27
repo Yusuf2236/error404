@@ -10,6 +10,7 @@ export default function Profile() {
     const router = useRouter();
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+    const [copiedCoupon, setCopiedCoupon] = useState(false);
 
     useEffect(() => {
         const auth = AuthService.getInstance();
@@ -27,6 +28,12 @@ export default function Profile() {
         const auth = AuthService.getInstance();
         auth.logout();
         router.push("/");
+    };
+
+    const copyCouponCode = () => {
+        navigator.clipboard.writeText("WELCOME30");
+        setCopiedCoupon(true);
+        setTimeout(() => setCopiedCoupon(false), 2000);
     };
 
     if (loading) {
@@ -58,32 +65,83 @@ export default function Profile() {
                         </span>
                     </div>
 
+                    {/* Welcome Discount Banner */}
+                    <div className={styles.discountBanner}>
+                        <div className={styles.discountContent}>
+                            <span className={styles.discountIcon}>🎉</span>
+                            <div className={styles.discountText}>
+                                <h3>Welcome Gift: 30% OFF</h3>
+                                <p>Your exclusive first booking discount</p>
+                            </div>
+                        </div>
+                        <div className={styles.couponBox}>
+                            <code className={styles.couponCode}>WELCOME30</code>
+                            <button
+                                className={styles.copyBtn}
+                                onClick={copyCouponCode}
+                            >
+                                {copiedCoupon ? '✓ Copied!' : '📋 Copy'}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Personal Dashboard */}
+                    <div className={styles.dashboard}>
+                        <h2 className={styles.sectionTitle}>Your Dashboard</h2>
+                        <div className={styles.statsGrid}>
+                            <div className={styles.statCard}>
+                                <span className={styles.statIcon}>🏨</span>
+                                <div className={styles.statInfo}>
+                                    <h4>Total Bookings</h4>
+                                    <p className={styles.statValue}>0</p>
+                                </div>
+                            </div>
+                            <div className={styles.statCard}>
+                                <span className={styles.statIcon}>💰</span>
+                                <div className={styles.statInfo}>
+                                    <h4>Total Spent</h4>
+                                    <p className={styles.statValue}>$0</p>
+                                </div>
+                            </div>
+                            <div className={styles.statCard}>
+                                <span className={styles.statIcon}>⭐</span>
+                                <div className={styles.statInfo}>
+                                    <h4>VIP Points</h4>
+                                    <p className={styles.statValue}>100</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* VIP Benefits */}
                     <div className={styles.section}>
-                        <h2>Welcome to VIP UZBE</h2>
-                        <p>Your account has been successfully created. You can now enjoy exclusive access to our premium services.</p>
-                    </div>
-
-                    <div className={styles.features}>
-                        <div className={styles.feature}>
-                            <span className={styles.icon}>🏨</span>
-                            <h3>Room Booking</h3>
-                            <p>Access to all luxury suites</p>
-                        </div>
-                        <div className={styles.feature}>
-                            <span className={styles.icon}>🎯</span>
-                            <h3>VIP Concierge</h3>
-                            <p>24/7 personal assistance</p>
-                        </div>
-                        <div className={styles.feature}>
-                            <span className={styles.icon}>✨</span>
-                            <h3>Exclusive Offers</h3>
-                            <p>Special member discounts</p>
+                        <h2 className={styles.sectionTitle}>VIP Member Benefits</h2>
+                        <div className={styles.features}>
+                            <div className={styles.feature}>
+                                <span className={styles.icon}>🏨</span>
+                                <h3>Priority Booking</h3>
+                                <p>Access to all luxury suites</p>
+                            </div>
+                            <div className={styles.feature}>
+                                <span className={styles.icon}>🎯</span>
+                                <h3>24/7 Concierge</h3>
+                                <p>Personal assistance anytime</p>
+                            </div>
+                            <div className={styles.feature}>
+                                <span className={styles.icon}>✨</span>
+                                <h3>Exclusive Offers</h3>
+                                <p>Special member discounts</p>
+                            </div>
                         </div>
                     </div>
 
+                    {/* Quick Actions */}
                     <div className={styles.actions}>
                         <Button variant="primary" size="lg" onClick={() => router.push("/rooms")}>
                             Browse Rooms
+                        </Button>
+                        <Button variant="secondary" size="lg" onClick={() => router.push("/booking")}>
+                            Book Now
                         </Button>
                         <Button variant="secondary" size="lg" onClick={handleLogout}>
                             Logout
