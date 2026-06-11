@@ -11,12 +11,16 @@ export default function AudioPlayer() {
         if (audioRef.current) {
             audioRef.current.volume = 0.2;
             if (isPlaying) {
-                audioRef.current.play().catch(e => console.log("Audio play blocked by browser", e));
+                // Silently handle browser autoplay restrictions
+                audioRef.current.play().catch(() => {
+                    // Audio play blocked by browser - this is expected behavior
+                });
             } else {
                 audioRef.current.pause();
             }
         }
     }, [isPlaying]);
+
 
     return (
         <div className={styles.container}>

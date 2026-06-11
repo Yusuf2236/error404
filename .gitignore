@@ -1,7 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
+# dependencies (root + nested, e.g. admin-side/)
+node_modules/
+**/node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -13,12 +14,23 @@
 # testing
 /coverage
 
-# next.js
-/.next/
+# next.js (root + admin-side build caches)
+.next/
+**/.next/
+.next-admin/
+**/.next-admin/
 /out/
 
 # production
 /build
+
+# Flutter / Dart build artifacts
+flutter_app/build/
+flutter_app/.dart_tool/
+**/.dart_tool/
+*.dill
+*.dill.track.dill
+*.so
 
 # misc
 .DS_Store
@@ -39,3 +51,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+node_modules
+
+# Native build artifacts
+vipuzbe-debug.apk
+*.apk
+/native/www/icon.png
+
+# Customer PII data store — never commit
+src/app/data/bookings.json
+admin-side/src/app/data/bookings.json

@@ -12,7 +12,7 @@ export default function RoyalConcierge() {
         en: {
             btn: "Royal Concierge",
             title: "Private Assistance",
-            desc: "Our dedicated concierge is ready to fulfill your every request, from private jets to the rarest of delicasies.",
+            desc: "Our dedicated concierge is ready to fulfill your every request, from private jets to the rarest of delicacies.",
             options: ["Book Private Jet", "Luxury Event Planning", "Rare Gift Sourcing", "Armed Escort Request"],
             contact: "Direct Line: +998 90 123 45 67"
         },

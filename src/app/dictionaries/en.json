@@ -77,5 +77,46 @@
       "location": "Singapore",
       "text": "Outstanding business facilities and the concierge service is world-class. Highly recommended for both business and leisure travelers."
     }
+  },
+  "servicesHome": {
+    "title": "Tashkent's Finest Amenities",
+    "subtitle": "Traditional hospitality meets 21st-century luxury.",
+    "diningTitle": "Uzbek Fine Dining",
+    "diningDesc": "Experience the legendary flavors of Uzbekistan by Michelin-star chefs.",
+    "spaTitle": "Royal Spa & Hammam",
+    "spaDesc": "Relax in authentic marble rituals from ancient Bukhara.",
+    "poolTitle": "Infinity Sky Pool",
+    "poolDesc": "Swim across the skyline in our heated rooftop infinity pool.",
+    "chauffeurTitle": "VIP Chauffeur",
+    "chauffeurDesc": "Private luxury fleet available for your city explorations."
+  },
+  "testimonialsHome": {
+    "title": "Elite Guest Experiences",
+    "subtitle": "Voices from the pinnacle of Tashkent hospitality."
+  },
+  "newsletter": {
+    "title": "Join the Elite Circle",
+    "subtitle": "Receive exclusive invitations to VIP events in Tashkent.",
+    "placeholder": "concierge@vipuzbe.com",
+    "button": "Subscribe"
+  },
+  "general": {
+    "loading": "Loading exclusive content...",
+    "noResults": "No results found matching your criteria.",
+    "reset": "Reset Filters",
+    "showing": "Showing",
+    "result": "result",
+    "results": "results",
+    "exploreDetails": "Explore Details",
+    "experience": "Experience",
+    "eliteRooms": "Elite Rooms",
+    "staffRatio": "Staff Ratio",
+    "vipSecurity": "VIP Security",
+    "selectPayment": "Select Payment Method",
+    "click": "Click",
+    "payme": "Payme",
+    "visa": "Visa",
+    "mastercard": "Mastercard",
+    "crypto": "USDT (Crypto)"
   }
 }

@@ -1,12 +1,20 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AIChatBot from "./components/AIChatBot";
-import AudioPlayer from "./components/AudioPlayer";
+
 import RoyalConcierge from "./components/RoyalConcierge";
 import ContactWidget from "./components/ContactWidget";
+import PWARegister from "./components/PWARegister";
 import "./globals.css";
 import { LanguageProvider } from "./context/LanguageContext";
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#0b0b10',
+};
 
 export const metadata: Metadata = {
   title: {
@@ -38,9 +46,25 @@ export const metadata: Metadata = {
     description: "Experience royal hospitality in Tashkent.",
     images: ["https://images.unsplash.com/photo-1542314844-0731cc8d0959?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=630&q=80"],
   },
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
+  manifest: "/manifest.webmanifest",
+  applicationName: "VIP UZBE",
+  appleWebApp: {
+    capable: true,
+    title: "VIP UZBE",
+    statusBarStyle: "black-translucent",
+  },
+  icons: {
+    icon: [
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
+
+
+
 
 export default function RootLayout({
   children,
@@ -48,14 +72,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <LanguageProvider>
+          <PWARegister />
           <Navbar />
           {children}
           <ContactWidget />
           <AIChatBot />
-          <AudioPlayer />
+
           <RoyalConcierge />
           <Footer />
         </LanguageProvider>

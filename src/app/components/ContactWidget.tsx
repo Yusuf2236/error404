@@ -39,7 +39,7 @@ const ContactWidget = () => {
             {isOpen && (
                 <div className={styles.menu}>
                     <a
-                        href="https://t.me/your_hotel_username"
+                        href="https://t.me/vipuzbe"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.item}

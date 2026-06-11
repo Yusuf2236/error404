@@ -116,7 +116,11 @@
 
 .content {
     padding: 30px;
-    background: rgba(10, 15, 30, 0.95);
+    background: #0F172A;
+    /* Solid Navy */
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .content h3 {
@@ -127,10 +131,12 @@
 }
 
 .desc {
-    color: rgba(255, 255, 255, 0.95);
+    color: #FFFFFF;
+    /* Pure White */
     line-height: 1.8;
     margin-bottom: 25px;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
+    /* Slightly larger */
     font-weight: 500;
 }
 
@@ -206,12 +212,17 @@
 
 .extendedDetails {
     margin-bottom: 30px;
-    color: rgba(255, 255, 255, 0.85);
+    color: #E2E8F0;
+    /* Brighter grey-white */
     font-style: italic;
     line-height: 1.6;
     border-left: 3px solid #d4af37;
     padding-left: 20px;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    /* Slight backing */
+    padding: 15px 20px;
+    border-radius: 0 8px 8px 0;
 }
 
 @media (max-width: 900px) {

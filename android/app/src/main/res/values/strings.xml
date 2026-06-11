@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">VIP UZBE</string>
+    <string name="title_activity_main">VIP UZBE</string>
+    <string name="package_name">com.vipuzbe.app</string>
+    <string name="custom_url_scheme">com.vipuzbe.app</string>
+</resources>

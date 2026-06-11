@@ -19,6 +19,11 @@
   --font-heading: 'Times New Roman', serif;
   --font-body: system-ui, -apple-system, sans-serif;
 
+  --font-size-base: 18px;
+  /* High-end readability */
+  --font-size-lg: 20px;
+  --font-size-sm: 16px;
+
   /* Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
@@ -44,8 +49,11 @@ body {
   font-family: var(--font-body);
   background-color: var(--background-color);
   color: var(--text-dark);
+  font-size: var(--font-size-base);
   font-weight: 500;
-  /* Bolder body text for better legibility */
+  line-height: 1.75;
+  /* Improved for better legibility */
+  word-break: break-word;
 }
 
 a {
@@ -69,4 +77,12 @@ button {
   cursor: pointer;
   border: none;
   font-family: inherit;
+}
+
+/* Mobile Responsiveness Improvements */
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+    /* Increased from 14px */
+  }
 }

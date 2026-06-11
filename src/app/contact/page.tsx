@@ -4,6 +4,8 @@ import Button from "../components/Button";
 import styles from "./page.module.css";
 import { useLanguage } from "../context/LanguageContext";
 
+import ScrollReveal from "../components/ScrollReveal";
+
 export default function Contact() {
     const { language } = useLanguage();
 
@@ -54,15 +56,15 @@ export default function Contact() {
     return (
         <main className={styles.main}>
             <div className={styles.hero}>
-                <div className={styles.heroOverlay}>
+                <ScrollReveal animation="zoomIn" duration={0.8} className={styles.heroOverlay}>
                     <h1>{t.title}</h1>
                     <p>{t.subtitle}</p>
-                </div>
+                </ScrollReveal>
             </div>
 
             <div className={styles.container}>
                 <div className={styles.glassWrapper}>
-                    <div className={styles.info}>
+                    <ScrollReveal animation="slideRight" delay={0.2} className={styles.info}>
                         <div className={styles.infoItem}>
                             <h3>{t.addressTitle}</h3>
                             <p>{t.address}</p>
@@ -78,9 +80,9 @@ export default function Contact() {
                             <p>{t.email}</p>
                             <p>reservations@vipuzbe.com</p>
                         </div>
-                    </div>
+                    </ScrollReveal>
 
-                    <div className={styles.formContainer}>
+                    <ScrollReveal animation="slideLeft" delay={0.4} className={styles.formContainer}>
                         <h2>{t.formTitle}</h2>
                         <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
                             <div className={styles.row}>
@@ -106,8 +108,18 @@ export default function Contact() {
 
                             <Button size="lg" className={styles.submitBtn}>{t.submit}</Button>
                         </form>
-                    </div>
+                    </ScrollReveal>
                 </div>
+
+                <ScrollReveal animation="fadeUp" delay={0.6} className={styles.mapContainer}>
+                    <iframe
+                        className={styles.mapFrame}
+                        src="https://maps.google.com/maps?q=41.3111,69.2797&z=15&output=embed"
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="VIP UZBE Location"
+                    ></iframe>
+                </ScrollReveal>
             </div>
         </main>
     );

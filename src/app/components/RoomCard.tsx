@@ -17,13 +17,14 @@ interface RoomCardProps {
         floor: string;
         capacity: string;
     };
+    isBooked?: boolean; // Added isBooked prop
 }
 
-export default function RoomCard({ id, name, description, price, imageUrl, specs }: RoomCardProps) {
+export default function RoomCard({ id, name, description, price, imageUrl, specs, isBooked }: RoomCardProps) {
     const { dict } = useLanguage();
 
     return (
-        <div className={styles.card}>
+        <div className={`${styles.card} ${isBooked ? styles.bookedCard : ''}`}> {/* Added conditional class for booked state */}
             <div className={styles.imageWrapper}>
                 <img
                     src={imageUrl || 'https://images.unsplash.com/photo-1542314844-0731cc8d0959?q=80'}
@@ -31,6 +32,11 @@ export default function RoomCard({ id, name, description, price, imageUrl, specs
                     className={styles.image}
                     loading="lazy"
                 />
+                {isBooked && ( // Conditionally render booked overlay/badge
+                    <div className={styles.bookedOverlay}>
+                        <span className={styles.bookedBadge}>RESERVED</span>
+                    </div>
+                )}
             </div>
             <div className={styles.cardContent}>
                 <h3>{name}</h3>
