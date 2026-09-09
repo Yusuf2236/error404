@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../app_state.dart';
 import '../models/room.dart';
 import '../theme.dart';
 
@@ -19,6 +20,8 @@ class RoomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = AppScope.of(context);
+    final fav = state.isFavorite(room.id);
     return Card(
       clipBehavior: Clip.antiAlias,
       margin: const EdgeInsets.only(bottom: 20),
@@ -29,22 +32,25 @@ class RoomCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                CachedNetworkImage(
-                  imageUrl: room.imageUrl,
-                  height: 200,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  placeholder: (c, _) => Container(
+                Hero(
+                  tag: 'room-${room.id}',
+                  child: CachedNetworkImage(
+                    imageUrl: room.imageUrl,
                     height: 200,
-                    color: const Color(0xFFEDE8E1),
-                    child: const Center(
-                      child: CircularProgressIndicator(color: AppColors.gold),
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    placeholder: (c, _) => Container(
+                      height: 200,
+                      color: const Color(0xFFEDE8E1),
+                      child: const Center(
+                        child: CircularProgressIndicator(color: AppColors.gold),
+                      ),
                     ),
-                  ),
-                  errorWidget: (c, _, _) => Container(
-                    height: 200,
-                    color: const Color(0xFFEDE8E1),
-                    child: const Icon(Icons.hotel, color: AppColors.slate, size: 48),
+                    errorWidget: (c, _, _) => Container(
+                      height: 200,
+                      color: const Color(0xFFEDE8E1),
+                      child: const Icon(Icons.hotel, color: AppColors.slate, size: 48),
+                    ),
                   ),
                 ),
                 Positioned(
@@ -58,14 +64,34 @@ class RoomCard extends StatelessWidget {
                 ),
                 if (occupied)
                   Positioned(
-                    top: 12,
-                    right: 12,
+                    bottom: 12,
+                    left: 12,
                     child: _Badge(
                       label: 'BOOKED',
                       color: Colors.red.shade700,
                       textColor: Colors.white,
                     ),
                   ),
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Material(
+                    color: Colors.black.withValues(alpha: 0.35),
+                    shape: const CircleBorder(),
+                    child: InkWell(
+                      customBorder: const CircleBorder(),
+                      onTap: () => state.toggleFavorite(room.id),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Icon(
+                          fav ? Icons.favorite : Icons.favorite_border,
+                          color: fav ? Colors.redAccent : Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             Padding(
@@ -106,12 +132,12 @@ class RoomCard extends StatelessWidget {
                         ),
                       ),
                       Row(
-                        children: const [
+                        children: [
                           Text('Details',
                               style: TextStyle(
-                                  color: AppColors.navy,
+                                  color: context.primaryText,
                                   fontWeight: FontWeight.w600)),
-                          Icon(Icons.arrow_forward, size: 16, color: AppColors.navy),
+                          Icon(Icons.arrow_forward, size: 16, color: context.primaryText),
                         ],
                       ),
                     ],

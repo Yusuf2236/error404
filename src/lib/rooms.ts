@@ -86,7 +86,7 @@ export const ROOMS: Room[] = [
         name: { en: "Oriental Elite Suite", uz: "Sharqona Elita Lyuksi", ru: "Люкс Восточная Элита" },
         description: { en: "A masterpiece of Islamic design with hand-painted ceilings and a marble hammam.", uz: "Islomiy dizayn durdonasi, shiftlari qo'lda naqshlangan va marmar hammomli.", ru: "Шедевр исламского дизайна с расписными потолками и мраморным хаммамом." },
         price: 1200,
-        imageUrl: "https://images.unsplash.com/photo-1578683010236-d716f9759678?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        imageUrl: "https://images.unsplash.com/photo-1591088398332-8a7791972843?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         locationUrl: "https://maps.app.goo.gl/VzK8N9P2m3Q4R5S6A"
     }
 ];

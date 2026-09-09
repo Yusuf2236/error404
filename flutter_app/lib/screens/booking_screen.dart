@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart';
 import '../app_state.dart';
+import '../data/i18n.dart';
 import '../data/rooms.dart';
 import '../theme.dart';
 
@@ -32,6 +34,8 @@ class _BookingScreenState extends State<BookingScreen> {
 
   final _fmt = DateFormat('yyyy-MM-dd');
 
+  bool _prefilled = false;
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +43,21 @@ class _BookingScreenState extends State<BookingScreen> {
     final now = DateTime.now();
     _checkIn = DateTime(now.year, now.month, now.day + 1);
     _checkOut = DateTime(now.year, now.month, now.day + 3);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Prefill from the signed-in guest once, so the booking links to their
+    // account and shows up under "My Bookings".
+    if (!_prefilled) {
+      final u = AppScope.of(context).user;
+      if (u != null) {
+        _name.text = u.name;
+        _email.text = u.email;
+      }
+      _prefilled = true;
+    }
   }
 
   int get _nights =>
@@ -151,18 +170,59 @@ class _BookingScreenState extends State<BookingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final state = AppScope.of(context);
+    final lang = state.lang;
+    final member = state.isLoggedIn;
+    final payable = member ? state.priceFor(_total) : _total;
+
     final form = Form(
         key: _formKey,
         child: ListView(
-          padding: const EdgeInsets.all(20),
+          padding: EdgeInsets.fromLTRB(20, 20, 20, widget.embedded ? 110 : 20),
           children: [
-            _label('Full name'),
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [AppColors.navy, Color(0xFF1B2438)],
+                ),
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: AppColors.gold.withValues(alpha: 0.2)),
+              ),
+              child: Row(
+                children: [
+                  const Icon(Icons.event_available, color: AppColors.gold, size: 30),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(tr('bk.reserveTitle', lang),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(color: Colors.white)),
+                        const SizedBox(height: 2),
+                        Text(
+                          member ? tr('bk.memberNote', lang) : tr('bk.guestNote', lang),
+                          style: const TextStyle(color: Colors.white70, fontSize: 12, height: 1.4),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ).animate().fadeIn().moveY(begin: 12, end: 0),
+            const SizedBox(height: 8),
+            _label(tr('bk.fullName', lang)),
             TextFormField(
               controller: _name,
               decoration: const InputDecoration(hintText: 'e.g. Aziz Karimov'),
               validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
             ),
-            _label('Email'),
+            _label(tr('bk.email', lang)),
             TextFormField(
               controller: _email,
               keyboardType: TextInputType.emailAddress,
@@ -170,20 +230,20 @@ class _BookingScreenState extends State<BookingScreen> {
               validator: (v) =>
                   (v == null || !v.contains('@')) ? 'Valid email required' : null,
             ),
-            _label('Phone'),
+            _label(tr('bk.phone', lang)),
             TextFormField(
               controller: _phone,
               keyboardType: TextInputType.phone,
               decoration: const InputDecoration(hintText: '+998 ...'),
               validator: (v) => (v == null || v.trim().length < 7) ? 'Required' : null,
             ),
-            _label('Room / Suite'),
+            _label(tr('bk.room', lang)),
             DropdownButtonFormField<String>(
               initialValue: _roomId,
               items: kRooms
                   .map((r) => DropdownMenuItem(
                         value: r.id,
-                        child: Text('${r.localizedName('en')} — \$${r.price}',
+                        child: Text('${r.localizedName('en')} — ${state.money(r.price)}',
                             overflow: TextOverflow.ellipsis),
                       ))
                   .toList(),
@@ -191,12 +251,12 @@ class _BookingScreenState extends State<BookingScreen> {
             ),
             Row(
               children: [
-                Expanded(child: _dateField('Check-in', _checkIn!, () => _pickDate(checkIn: true))),
+                Expanded(child: _dateField(tr('bk.checkIn', lang), _checkIn!, () => _pickDate(checkIn: true))),
                 const SizedBox(width: 12),
-                Expanded(child: _dateField('Check-out', _checkOut!, () => _pickDate(checkIn: false))),
+                Expanded(child: _dateField(tr('bk.checkOut', lang), _checkOut!, () => _pickDate(checkIn: false))),
               ],
             ),
-            _label('Guests'),
+            _label(tr('bk.guests', lang)),
             Row(
               children: [
                 _stepBtn(Icons.remove, () {
@@ -212,7 +272,7 @@ class _BookingScreenState extends State<BookingScreen> {
                 }),
               ],
             ),
-            _label('Payment method'),
+            _label(tr('bk.payment', lang)),
             Wrap(
               spacing: 8,
               children: ['click', 'payme', 'visa', 'cash']
@@ -228,6 +288,22 @@ class _BookingScreenState extends State<BookingScreen> {
                       ))
                   .toList(),
             ),
+            _label(tr('bk.currency', lang)),
+            Wrap(
+              spacing: 8,
+              children: const ['USD', 'UZS', 'EUR']
+                  .map((c) => ChoiceChip(
+                        label: Text(c),
+                        selected: state.currency == c,
+                        selectedColor: AppColors.navy,
+                        labelStyle: TextStyle(
+                          color: state.currency == c ? AppColors.gold : AppColors.slate,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        onSelected: (_) => state.setCurrency(c),
+                      ))
+                  .toList(),
+            ),
             const SizedBox(height: 24),
             Container(
               padding: const EdgeInsets.all(18),
@@ -235,27 +311,49 @@ class _BookingScreenState extends State<BookingScreen> {
                 color: AppColors.navy,
                 borderRadius: BorderRadius.circular(14),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('$_nights night${_nights == 1 ? '' : 's'}',
-                          style: const TextStyle(color: Colors.white70, fontSize: 13)),
-                      const SizedBox(height: 4),
-                      Text('\$$_total',
-                          style: const TextStyle(
-                              color: AppColors.gold, fontSize: 26, fontWeight: FontWeight.w800)),
-                    ],
+                  Text('$_nights ${tr('bk.nights', lang)}',
+                      style: const TextStyle(color: Colors.white70, fontSize: 13)),
+                  const SizedBox(height: 4),
+                  if (member)
+                    Text(state.money(_total),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            color: Colors.white54,
+                            fontSize: 15,
+                            decoration: TextDecoration.lineThrough)),
+                  // Scale the big total down to fit the card width — UZS amounts
+                  // can be very long, so a fixed font size would overflow.
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(state.money(payable),
+                        maxLines: 1,
+                        style: const TextStyle(
+                            color: AppColors.gold,
+                            fontSize: 26,
+                            fontWeight: FontWeight.w800)),
                   ),
-                  ElevatedButton(
-                    onPressed: _submitting ? null : _submit,
-                    child: _submitting
-                        ? const SizedBox(
-                            width: 20, height: 20,
-                            child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.navy))
-                        : const Text('CONFIRM'),
+                  if (member)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2),
+                      child: Text(tr('bk.discountApplied', lang),
+                          style: const TextStyle(color: AppColors.gold, fontSize: 11)),
+                    ),
+                  const SizedBox(height: 14),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: _submitting ? null : _submit,
+                      child: _submitting
+                          ? const SizedBox(
+                              width: 20, height: 20,
+                              child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.navy))
+                          : Text(tr('bk.confirm', lang)),
+                    ),
                   ),
                 ],
               ),
@@ -267,15 +365,17 @@ class _BookingScreenState extends State<BookingScreen> {
 
     if (widget.embedded) return form;
     return Scaffold(
-      appBar: AppBar(title: const Text('BOOK YOUR STAY')),
+      appBar: AppBar(title: Text(tr('title.book', lang))),
       body: form,
     );
   }
 
-  Widget _label(String t) => Padding(
-        padding: const EdgeInsets.fromLTRB(2, 18, 0, 8),
-        child: Text(t,
-            style: const TextStyle(fontWeight: FontWeight.w600, color: AppColors.navy)),
+  Widget _label(String t) => Builder(
+        builder: (context) => Padding(
+          padding: const EdgeInsets.fromLTRB(2, 18, 0, 8),
+          child: Text(t,
+              style: TextStyle(fontWeight: FontWeight.w600, color: context.primaryText)),
+        ),
       );
 
   Widget _dateField(String label, DateTime value, VoidCallback onTap) {

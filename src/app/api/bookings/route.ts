@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
 import { getBookings, addBooking } from '@/lib/db';
 
+// CORS preflight for cross-origin clients (e.g. the Flutter web app). Headers added in next.config.ts.
+export async function OPTIONS() {
+    return new NextResponse(null, { status: 204 });
+}
+
 export async function GET() {
     try {
         const bookings = getBookings();

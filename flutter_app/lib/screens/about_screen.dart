@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../app_state.dart';
+import '../data/i18n.dart';
 import '../theme.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -7,8 +9,9 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = AppScope.of(context).lang;
     return Scaffold(
-      appBar: AppBar(title: const Text('ABOUT')),
+      appBar: AppBar(title: Text(tr('ab.title', lang))),
       body: ListView(
         children: [
           CachedNetworkImage(
@@ -25,28 +28,25 @@ class AboutScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('The VIP UZBE Standard',
+                Text(tr('ab.heading', lang),
                     style: Theme.of(context).textTheme.displaySmall),
                 const SizedBox(height: 14),
-                const Text(
-                  'VIP UZBE is the pinnacle of Tashkent luxury — a sanctuary where ancient '
-                  'Uzbek hospitality meets contemporary elegance. Every suite tells a story, '
-                  'every detail is intentional, and every guest is treated as royalty.',
-                  style: TextStyle(color: AppColors.slate, height: 1.7, fontSize: 15),
+                Text(
+                  tr('ab.p1', lang),
+                  style: const TextStyle(color: AppColors.slate, height: 1.7, fontSize: 15),
                 ),
                 const SizedBox(height: 24),
                 Row(
-                  children: const [
-                    _Stat('15+', 'Years of\nExcellence'),
-                    _Stat('8', 'Signature\nSuites'),
-                    _Stat('24/7', 'Concierge\nService'),
+                  children: [
+                    _Stat('15+', tr('ab.stat1', lang)),
+                    _Stat('8', tr('ab.stat2', lang)),
+                    _Stat('24/7', tr('ab.stat3', lang)),
                   ],
                 ),
                 const SizedBox(height: 24),
-                const Text(
-                  'Located in the heart of Tashkent, moments from Tashkent City, Chorsu Bazaar '
-                  'and the Broadway, VIP UZBE places the soul of Uzbekistan at your doorstep.',
-                  style: TextStyle(color: AppColors.slate, height: 1.7, fontSize: 15),
+                Text(
+                  tr('ab.p2', lang),
+                  style: const TextStyle(color: AppColors.slate, height: 1.7, fontSize: 15),
                 ),
               ],
             ),
@@ -73,7 +73,7 @@ class _Stat extends StatelessWidget {
           const SizedBox(height: 4),
           Text(label,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: AppColors.navy, fontSize: 12, height: 1.3)),
+              style: TextStyle(color: context.primaryText, fontSize: 12, height: 1.3)),
         ],
       ),
     );

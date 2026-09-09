@@ -1,50 +1,61 @@
 import 'package:flutter/material.dart';
+import '../app_state.dart';
+import '../data/i18n.dart';
 import '../theme.dart';
+import 'concierge_chat_screen.dart';
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final lang = AppScope.of(context).lang;
+    final tiles = [
+      (Icons.location_on_outlined, tr('ct.address', lang), 'Tashkent City, Islam Karimov St, Tashkent, Uzbekistan'),
+      (Icons.phone_outlined, tr('ct.phone', lang), '+998 71 200 00 00'),
+      (Icons.email_outlined, tr('ct.email', lang), 'info@jofosh.uz'),
+      (Icons.access_time, tr('ct.reception', lang), tr('ct.open247', lang)),
+    ];
     return Scaffold(
-      appBar: AppBar(title: const Text('CONTACT')),
+      appBar: AppBar(title: Text(tr('ct.title', lang))),
       body: ListView(
         padding: const EdgeInsets.all(22),
         children: [
-          Text('Get in touch', style: Theme.of(context).textTheme.displaySmall),
+          Text(tr('ct.getInTouch', lang), style: Theme.of(context).textTheme.displaySmall),
           const SizedBox(height: 8),
-          const Text('Our concierge is available around the clock.',
-              style: TextStyle(color: AppColors.slate, fontSize: 15)),
+          Text(tr('ct.sub', lang),
+              style: TextStyle(color: context.secondaryText, fontSize: 15)),
           const SizedBox(height: 24),
-          _tile(Icons.location_on_outlined, 'Address',
-              'Tashkent City, Islam Karimov St, Tashkent, Uzbekistan'),
-          _tile(Icons.phone_outlined, 'Phone', '+998 71 200 00 00'),
-          _tile(Icons.email_outlined, 'Email', 'info@jofosh.uz'),
-          _tile(Icons.access_time, 'Reception', 'Open 24 / 7'),
+          for (final t in tiles) _tile(context, t.$1, t.$2, t.$3),
           const SizedBox(height: 8),
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: AppColors.navy,
-              borderRadius: BorderRadius.circular(16),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [AppColors.navy, Color(0xFF1B2438)],
+              ),
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: AppColors.gold.withValues(alpha: 0.2)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Royal Concierge',
-                    style: TextStyle(
+                Text(tr('ct.conciergeTitle', lang),
+                    style: const TextStyle(
                         color: AppColors.gold, fontSize: 18, fontWeight: FontWeight.w700)),
                 const SizedBox(height: 8),
-                const Text(
-                  'Need a private tour, a dinner reservation, or airport pickup? '
-                  'Message us and consider it arranged.',
-                  style: TextStyle(color: Colors.white70, height: 1.6),
+                Text(
+                  tr('ct.conciergeBody', lang),
+                  style: const TextStyle(color: Colors.white70, height: 1.6),
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () => Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => const ConciergeChatScreen())),
                   icon: const Icon(Icons.chat_bubble_outline, size: 18),
-                  label: const Text('START A CHAT'),
+                  label: Text(tr('ct.startChat', lang)),
                 ),
               ],
             ),
@@ -54,21 +65,22 @@ class ContactScreen extends StatelessWidget {
     );
   }
 
-  Widget _tile(IconData icon, String title, String value) => Container(
+  Widget _tile(BuildContext context, IconData icon, String title, String value) => Container(
         margin: const EdgeInsets.only(bottom: 14),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: const Color(0xFFE2E8F0)),
+          color: context.cardSurface,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: context.cardBorder),
         ),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
+              width: 44,
+              height: 44,
               decoration: BoxDecoration(
-                color: AppColors.cream,
-                borderRadius: BorderRadius.circular(10),
+                color: AppColors.gold.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(icon, color: AppColors.goldDeep),
             ),
@@ -78,12 +90,12 @@ class ContactScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(title,
-                      style: const TextStyle(
-                          color: AppColors.slate, fontSize: 12, fontWeight: FontWeight.w600)),
+                      style: TextStyle(
+                          color: context.secondaryText, fontSize: 12, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 3),
                   Text(value,
-                      style: const TextStyle(
-                          color: AppColors.navy, fontWeight: FontWeight.w600, height: 1.3)),
+                      style: TextStyle(
+                          color: context.primaryText, fontWeight: FontWeight.w600, height: 1.3)),
                 ],
               ),
             ),

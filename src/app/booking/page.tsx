@@ -5,19 +5,50 @@ import Button from "../components/Button";
 import styles from "./page.module.css";
 import { useLanguage } from "../context/LanguageContext";
 
+// Room nightly prices in USD (rooms are priced in USD; the converter shows them
+// in the guest's chosen currency).
+const ROOM_PRICES_USD: Record<string, number> = {
+    platinum: 550,
+    heritage: 2500,
+    minor: 950,
+    chorsu: 380,
+};
+
+// FX rates relative to 1 USD. UZS is a sane default; EUR a stable cross-rate.
+const FX: Record<string, number> = { USD: 1, UZS: 12850, EUR: 0.92 };
+
+function formatMoney(usd: number, currency: string): string {
+    const v = Math.round(usd * (FX[currency] ?? 1));
+    if (currency === "UZS") return `${v.toLocaleString("ru-RU").replace(/,/g, " ")} so'm`;
+    if (currency === "EUR") return `€${v.toLocaleString("en-US")}`;
+    return `$${v.toLocaleString("en-US")}`;
+}
+
 export default function Booking() {
     const { dict, language } = useLanguage();
     const [isConfirmed, setIsConfirmed] = useState(false);
+    const [currency, setCurrency] = useState("USD");
     const [formData, setFormData] = useState({
         checkIn: "",
         checkOut: "",
         guests: "2",
-        roomType: "deluxe-suite",
+        roomType: "platinum",
         name: "",
         email: "",
         phone: "",
         paymentMethod: "click"
     });
+
+    // Nights between the selected dates (min 1 once both are set).
+    const nights = (() => {
+        if (!formData.checkIn || !formData.checkOut) return 0;
+        const ms = new Date(formData.checkOut).getTime() - new Date(formData.checkIn).getTime();
+        const n = Math.round(ms / 86400000);
+        return n > 0 ? n : 0;
+    })();
+
+    const nightlyUsd = ROOM_PRICES_USD[formData.roomType] ?? 0;
+    const totalUsd = nightlyUsd * (nights > 0 ? nights : 1);
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
@@ -232,6 +263,31 @@ export default function Booking() {
                             </div>
                         </div>
 
+                        <div className={styles.paymentSection}>
+                            <h2 className={styles.sectionTitle}>{language === "uz" ? "Valyuta" : language === "ru" ? "Валюта" : "Currency"}</h2>
+                            <div className={styles.currencyRow}>
+                                {["USD", "UZS", "EUR"].map((c) => (
+                                    <button
+                                        key={c}
+                                        type="button"
+                                        className={`${styles.currencyBtn} ${currency === c ? styles.activeCurrency : ''}`}
+                                        onClick={() => setCurrency(c)}
+                                    >
+                                        {c}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className={styles.summaryCard}>
+                            <div className={styles.summaryRow}>
+                                <span>{nights > 0 ? `${nights} ${language === "uz" ? "tun" : language === "ru" ? "ночей" : "nights"} × ${formatMoney(nightlyUsd, currency)}` : formatMoney(nightlyUsd, currency)}</span>
+                            </div>
+                            <div className={styles.summaryTotal}>
+                                <span>{language === "uz" ? "Jami" : language === "ru" ? "Итого" : "Total"}</span>
+                                <strong>{formatMoney(totalUsd, currency)}</strong>
+                            </div>
+                        </div>
                         {error && (
                             <div className={styles.error}>
                                 {error}

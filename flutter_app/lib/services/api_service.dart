@@ -16,6 +16,29 @@ class ApiService {
 
   final http.Client _client = http.Client();
 
+  /// Live USD → UZS exchange rate from a free public FX API (no key needed).
+  /// Returns 0 only if every source fails — callers fall back to a sane default.
+  Future<double> fetchUsdToUzs() async {
+    const sources = [
+      'https://open.er-api.com/v6/latest/USD',
+      'https://api.exchangerate-api.com/v4/latest/USD',
+    ];
+    for (final url in sources) {
+      try {
+        final res = await _client.get(Uri.parse(url)).timeout(const Duration(seconds: 8));
+        if (res.statusCode == 200) {
+          final data = jsonDecode(res.body) as Map<String, dynamic>;
+          final rates = data['rates'] as Map<String, dynamic>?;
+          final uzs = rates?['UZS'];
+          if (uzs is num && uzs > 0) return uzs.toDouble();
+        }
+      } catch (_) {
+        // try the next source
+      }
+    }
+    return 0;
+  }
+
   /// Room ids that are occupied today (status confirmed/paid covering today).
   Future<List<String>> fetchOccupiedRooms() async {
     final res = await _client
@@ -26,6 +49,17 @@ class ApiService {
       return (data['occupied'] as List?)?.cast<String>() ?? [];
     }
     throw Exception('Availability failed: ${res.statusCode}');
+  }
+
+  /// The signed-in guest's own bookings (by email).
+  Future<List<Map<String, dynamic>>> fetchMyBookings(String email) async {
+    final res = await _client
+        .get(Uri.parse('$baseUrl/api/bookings/mine?email=${Uri.encodeQueryComponent(email)}'))
+        .timeout(const Duration(seconds: 10));
+    if (res.statusCode == 200) {
+      return (jsonDecode(res.body) as List).cast<Map<String, dynamic>>();
+    }
+    throw Exception('My bookings failed: ${res.statusCode}');
   }
 
   /// Creates a booking. Returns the created record (incl. id + totalPrice).

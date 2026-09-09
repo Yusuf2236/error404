@@ -1,7 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# dependencies (root + nested, e.g. admin-side/)
 node_modules/
+**/node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -13,15 +14,26 @@ node_modules/
 # testing
 coverage/
 
-# next.js
+# next.js (root + admin-side build caches)
 .next/
+**/.next/
 .next-admin/
+**/.next-admin/
 out/
 .turbo/
 
 # production
 build/
 dist/
+
+# Flutter / Dart build artifacts
+flutter_app/build/
+flutter_app/.dart_tool/
+**/.dart_tool/
+flutter_app/.idea/
+*.dill
+*.dill.track.dill
+*.so
 
 # misc
 .DS_Store
@@ -48,13 +60,13 @@ vipuzbe-debug.apk
 *.apk
 /native/www/icon.png
 
-# Mobile & Flutter build caches
+# Mobile build caches
 android/.gradle/
 android/build/
 android/app/build/
 android/local.properties
 android/capacitor-cordova-android-plugins/build/
-flutter_app/.dart_tool/
-flutter_app/.idea/
-flutter_app/build/
 
+# Customer PII data store — never commit
+src/app/data/bookings.json
+admin-side/src/app/data/bookings.json

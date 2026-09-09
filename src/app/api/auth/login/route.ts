@@ -2,9 +2,10 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { SignJWT } from 'jose';
 
-const JWT_SECRET = new TextEncoder().encode(
-    process.env.JWT_SECRET || 'fallback-secret-for-dev-only-do-not-use-in-prod'
-);
+// Fail closed: no publicly-known fallback secret/password may be baked into the
+// source — that would make admin forgery / login trivial.
+const RAW_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = RAW_SECRET ? new TextEncoder().encode(RAW_SECRET) : null;
 
 export async function POST(request: Request) {
     try {
@@ -12,7 +13,12 @@ export async function POST(request: Request) {
         const { email, password } = body;
 
         const VALID_EMAIL = "admin@vipuzbe.com";
-        const VALID_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
+        const VALID_PASSWORD = process.env.ADMIN_PASSWORD;
+
+        if (!JWT_SECRET || !VALID_PASSWORD) {
+            console.error('Auth misconfigured: JWT_SECRET and/or ADMIN_PASSWORD not set');
+            return NextResponse.json({ error: 'Server auth not configured' }, { status: 500 });
+        }
 
         if (email === VALID_EMAIL && password === VALID_PASSWORD) {
             // Create a secure JWT

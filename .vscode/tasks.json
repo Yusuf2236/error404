@@ -1,0 +1,24 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Open App (3000)",
+            "type": "shell",
+            "command": "echo",
+            "args": ["Open via Ctrl+Alt+P, yoki Simple Browser: Show -> http://localhost:3000"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Dev: run both (3000 + 3001)",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "dev:all"],
+            "isBackground": true,
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        }
+    ]
+}
