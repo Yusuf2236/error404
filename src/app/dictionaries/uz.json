@@ -77,5 +77,46 @@
             "location": "Singapur",
             "text": "Ajoyib biznes imkoniyatlari va konsyerj xizmati jahon darajasida. Biznes va dam olish sayohatchilari uchun juda tavsiya etiladi."
         }
+    },
+    "servicesHome": {
+        "title": "Toshkentning eng sara xizmatlari",
+        "subtitle": "An'anaviy mehmondo'stlik va 21-asr hashamati uyg'unligi.",
+        "diningTitle": "O'zbek Oliy Taomlari",
+        "diningDesc": "Mishel yulduzli oshpazlar tomonidan tayyorlangan O'zbekistonning afsonaviy lazzatlarini his eting.",
+        "spaTitle": "Qirollik Spa va Xammom",
+        "spaDesc": "Qadimiy Buxoroning haqiqiy marmar marosimlarida dam oling.",
+        "poolTitle": "Infinity Sky hovuzi",
+        "poolDesc": "Isitiladigan tom qismidagi infinity hovuzimizda shahar manzarasi bo'ylab suzing.",
+        "chauffeurTitle": "VIP Shofyor",
+        "chauffeurDesc": "Shahar bo'ylab sayohatlaringiz uchun shaxsiy hashamatli avtopark mavjud."
+    },
+    "testimonialsHome": {
+        "title": "Elita mehmonlarimizning tajribalari",
+        "subtitle": "Toshkent mehmondo'stligining cho'qqisidan so'zlar."
+    },
+    "newsletter": {
+        "title": "Elita doirasiga qo'shiling",
+        "subtitle": "Toshkentdagi VIP tadbirlarga eksklyuziv taklifnomalarni qabul qiling.",
+        "placeholder": "concierge@vipuzbe.com",
+        "button": "Obuna bo'lish"
+    },
+    "general": {
+        "loading": "Eksklyuziv ma'lumotlar yuklanmoqda...",
+        "noResults": "Sizning so'rovingizga mos natija topilmadi.",
+        "reset": "Filtrlarni tozalash",
+        "showing": "Ko'rsatilmoqda",
+        "result": "natija",
+        "results": "natija",
+        "exploreDetails": "Batafsil bilish",
+        "experience": "Tajriba",
+        "eliteRooms": "Eksklyuziv xonalar",
+        "staffRatio": "Xodimlar nisbati",
+        "vipSecurity": "VIP Xavfsizlik",
+        "selectPayment": "To'lov usulini tanlang",
+        "click": "Click",
+        "payme": "Payme",
+        "visa": "Visa",
+        "mastercard": "Mastercard",
+        "crypto": "USDT (Kripto)"
     }
 }

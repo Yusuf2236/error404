@@ -87,6 +87,17 @@
     margin-top: 1rem;
 }
 
+.error {
+    background-color: rgba(220, 38, 38, 0.1);
+    border: 1px solid #dc2626;
+    color: #dc2626;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
 .successCard {
     text-align: center;
     padding: 6rem;
@@ -117,6 +128,72 @@
 
 @media (max-width: 600px) {
     .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.paymentSection {
+    margin-top: 2rem;
+}
+
+.paymentMethods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.paymentBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid transparent;
+    padding: 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.paymentBtn:hover {
+    transform: translateY(-5px);
+    background: rgba(212, 175, 55, 0.05);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.activePayment {
+    background: white;
+    border-color: var(--secondary-color);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15);
+}
+
+.paymentIcon {
+    font-size: 2rem;
+}
+
+.paymentBtn span:not(.paymentIcon) {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
+.paymentDesc {
+    font-size: 0.7rem;
+    color: #64748b;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .paymentMethods {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .paymentMethods {
         grid-template-columns: 1fr;
     }
 }

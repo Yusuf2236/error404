@@ -50,6 +50,7 @@ export default function LocalExplorer() {
                             alt={activeItem.name}
                             className={styles.guideImg}
                             loading="lazy"
+                            decoding="async"
                             onError={(e) => {
                                 (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60&fm=jpg";
                             }}

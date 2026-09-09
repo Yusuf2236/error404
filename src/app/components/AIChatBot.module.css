@@ -1,6 +1,6 @@
 .toggleBtn {
     position: fixed;
-    bottom: 2rem;
+    bottom: 110px;
     right: 2rem;
     width: 70px;
     height: 70px;
@@ -25,12 +25,15 @@
 
 .chatWindow {
     position: fixed;
-    bottom: 7.5rem;
+    bottom: 180px;
     right: 2rem;
     width: 400px;
     height: 600px;
+    max-height: 80vh;
+    /* Keep overflow fix */
     background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 16px;
     border: 1px solid rgba(212, 175, 55, 0.4);
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
@@ -108,8 +111,11 @@
     align-self: flex-start;
     font-size: 1rem;
     line-height: 1.6;
+    /* Good line height for text */
     border: 1px solid rgba(255, 255, 255, 0.1);
     font-weight: 500;
+    word-break: break-word;
+    /* Keep fix */
 }
 
 .userMsg {
@@ -121,6 +127,10 @@
     align-self: flex-end;
     font-size: 1rem;
     font-weight: 800;
+    border: 1px solid var(--secondary-color);
+    word-break: break-word;
+    /* Keep fix */
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
 }
 
 .inputArea {
@@ -128,6 +138,7 @@
     background: rgba(0, 0, 0, 0.3);
     display: flex;
     gap: 1rem;
+    border-top: 1px solid rgba(0, 243, 255, 0.2);
 }
 
 .inputArea input {
@@ -139,12 +150,14 @@
     color: white;
     font-family: inherit;
     font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .inputArea input:focus {
     outline: none;
     border-color: var(--secondary-color);
     background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
 }
 
 .sendBtn {

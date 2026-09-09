@@ -2,9 +2,10 @@
 
 import styles from "./page.module.css";
 import { useLanguage } from "../context/LanguageContext";
+import ScrollReveal from "../components/ScrollReveal";
 
 export default function ClientAbout() {
-    const { language } = useLanguage();
+    const { dict, language } = useLanguage();
 
     const content = {
         en: {
@@ -47,13 +48,13 @@ export default function ClientAbout() {
     return (
         <main className={styles.main}>
             <header className={styles.header}>
-                <div className={styles.heroOverlay}>
+                <ScrollReveal animation="zoomIn" className={styles.heroOverlay}>
                     <h1>{t.title}</h1>
-                </div>
+                </ScrollReveal>
             </header>
             <div className={styles.container}>
                 <section className={styles.content}>
-                    <div className={styles.glassCard}>
+                    <ScrollReveal animation="fadeUp" className={styles.glassCard}>
                         <div className={styles.textSection}>
                             <p className={styles.boldText}>{t.p1}</p>
                             <p className={styles.boldText}>{t.p2}</p>
@@ -78,18 +79,18 @@ export default function ClientAbout() {
                         <div className={styles.stats}>
                             <div className={styles.statItem}>
                                 <strong>150+</strong>
-                                <span>Elite Rooms</span>
+                                <span>{dict.general.eliteRooms}</span>
                             </div>
                             <div className={styles.statItem}>
                                 <strong>3:1</strong>
-                                <span>Staff Ratio</span>
+                                <span>{dict.general.staffRatio}</span>
                             </div>
                             <div className={styles.statItem}>
                                 <strong>24/7</strong>
-                                <span>VIP Security</span>
+                                <span>{dict.general.vipSecurity}</span>
                             </div>
                         </div>
-                    </div>
+                    </ScrollReveal>
                 </section>
             </div>
         </main>

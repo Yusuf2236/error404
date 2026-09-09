@@ -3,9 +3,10 @@
 import styles from "./page.module.css";
 import { useLanguage } from "../context/LanguageContext";
 import Link from "next/link";
+import ScrollReveal from "../components/ScrollReveal";
 
 export default function ClientServices() {
-    const { language } = useLanguage();
+    const { dict, language } = useLanguage();
 
     const services = [
         {
@@ -45,16 +46,13 @@ export default function ClientServices() {
         }
     ];
 
-    const t_title = { en: "Elite Services Portfolio", uz: "Elita Xizmatlar Portfeli", ru: "Портфель Элитных Услуг" }[language as "en" | "uz" | "ru"] || "Elite Services";
-    const t_subtitle = { en: "Operating with absolute precision to serve the world's most discerning guests.", uz: "Dunyoning eng talabchan mehmonlariga xizmat ko'rsatish uchun mutlaq aniqlik bilan ishlaymiz.", ru: "Работаем с абсолютной точностью для обслуживания самых взыскательных гостей мира." }[language as "en" | "uz" | "ru"] || "";
-
     return (
         <main className={styles.main}>
             <header className={styles.header}>
-                <div className={styles.overlay}>
-                    <h1>{t_title}</h1>
-                    <p className={styles.boldText}>{t_subtitle}</p>
-                </div>
+                <ScrollReveal animation="zoomIn" className={styles.overlay}>
+                    <h1>{dict.servicesHome.title}</h1>
+                    <p className={styles.boldText}>{dict.servicesHome.subtitle}</p>
+                </ScrollReveal>
             </header>
 
             <div className={styles.container}>
@@ -62,11 +60,13 @@ export default function ClientServices() {
                     {services.map((item, index) => {
                         const t = item[language as "en" | "uz" | "ru"] || item.en;
                         return (
-                            <Link key={index} href={`/services/${item.slug}`} className={styles.card}>
-                                <span className={styles.icon}>{item.icon}</span>
-                                <h3>{t.title}</h3>
-                                <p className={styles.boldText}>{t.desc}</p>
-                                <span className={styles.exploreBtn}>Explore Details →</span>
+                            <Link key={index} href={`/services/${item.slug}`} style={{ textDecoration: 'none' }}>
+                                <ScrollReveal animation="fadeUp" delay={index * 0.1} className={styles.card}>
+                                    <span className={styles.icon}>{item.icon}</span>
+                                    <h3>{t.title}</h3>
+                                    <p className={styles.boldText}>{t.desc}</p>
+                                    <span className={styles.exploreBtn}>{dict.general.exploreDetails} →</span>
+                                </ScrollReveal>
                             </Link>
                         );
                     })}

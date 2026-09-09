@@ -7,6 +7,7 @@ export interface User {
     email: string;
     avatar: string;
     provider: 'google' | 'apple' | 'email';
+    role?: 'user' | 'admin';
 }
 
 class AuthService {
@@ -67,22 +68,43 @@ class AuthService {
 
     // Email/Password login
     async loginWithEmail(email: string, password: string): Promise<User> {
-        return new Promise((resolve, reject) => {
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Login failed');
+            }
+
+            if (data.success && data.user) {
+                this.setUser(data.user);
+                return data.user;
+            } else {
+                throw new Error('Invalid response from server');
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    // Signup
+    async signup(name: string, email: string, password: string): Promise<User> {
+        return new Promise((resolve) => {
             setTimeout(() => {
-                // Simple validation
-                if (email && password.length >= 6) {
-                    const user: User = {
-                        id: 'email_' + Date.now(),
-                        name: email.split('@')[0],
-                        email: email,
-                        avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(email.split('@')[0])}&background=d4af37&color=0a0f1e&size=200`,
-                        provider: 'email'
-                    };
-                    this.setUser(user);
-                    resolve(user);
-                } else {
-                    reject(new Error('Invalid credentials'));
-                }
+                const user: User = {
+                    id: 'email_' + Date.now(),
+                    name: name,
+                    email: email,
+                    avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=d4af37&color=0a0f1e&size=200`,
+                    provider: 'email'
+                };
+                this.setUser(user);
+                resolve(user);
             }, 1000);
         });
     }
@@ -91,6 +113,7 @@ class AuthService {
         this.currentUser = user;
         if (typeof window !== 'undefined') {
             localStorage.setItem('vip_uzbe_user', JSON.stringify(user));
+            window.dispatchEvent(new Event('vip_auth_change'));
         }
     }
 
@@ -102,6 +125,7 @@ class AuthService {
         this.currentUser = null;
         if (typeof window !== 'undefined') {
             localStorage.removeItem('vip_uzbe_user');
+            window.dispatchEvent(new Event('vip_auth_change'));
         }
     }
 

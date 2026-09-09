@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -11,14 +11,17 @@
 !.yarn/versions
 
 # testing
-/coverage
+coverage/
 
 # next.js
-/.next/
-/out/
+.next/
+.next-admin/
+out/
+.turbo/
 
 # production
-/build
+build/
+dist/
 
 # misc
 .DS_Store
@@ -39,3 +42,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Native build artifacts
+vipuzbe-debug.apk
+*.apk
+/native/www/icon.png
+
+# Mobile & Flutter build caches
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/capacitor-cordova-android-plugins/build/
+flutter_app/.dart_tool/
+flutter_app/.idea/
+flutter_app/build/
+

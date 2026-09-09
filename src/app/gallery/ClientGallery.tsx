@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./page.module.css";
 import { useLanguage } from "../context/LanguageContext";
+import ScrollReveal from "../components/ScrollReveal";
 
 interface GalleryItem {
     src: string;
@@ -10,7 +11,7 @@ interface GalleryItem {
 }
 
 export default function ClientGallery() {
-    const { language } = useLanguage();
+    const { dict, language } = useLanguage();
 
     const content = {
         en: { title: "Visual Journey", subtitle: "Glimpses of Tashkent's most exclusive hospitality.", all: "All", rooms: "Suites", spa: "Spa & Wellness", dining: "Culinary" },
@@ -38,28 +39,28 @@ export default function ClientGallery() {
     return (
         <main className={styles.main}>
             <header className={styles.header}>
-                <div className={styles.overlay}>
+                <ScrollReveal animation="zoomIn" className={styles.overlay}>
                     <h1>{t.title}</h1>
                     <p>{t.subtitle}</p>
-                </div>
+                </ScrollReveal>
             </header>
 
             <div className={styles.container}>
-                <div className={styles.filterBar}>
+                <ScrollReveal animation="fadeUp" className={styles.filterBar}>
                     <button onClick={() => setFilter("all")} className={filter === "all" ? styles.active : ""}>{t.all}</button>
                     <button onClick={() => setFilter("rooms")} className={filter === "rooms" ? styles.active : ""}>{t.rooms}</button>
                     <button onClick={() => setFilter("spa")} className={filter === "spa" ? styles.active : ""}>{t.spa}</button>
                     <button onClick={() => setFilter("dining")} className={filter === "dining" ? styles.active : ""}>{t.dining}</button>
-                </div>
+                </ScrollReveal>
 
                 <div className={styles.glassGrid}>
                     {filteredImages.map((img, index) => (
-                        <div key={index} className={styles.imageWrapper}>
+                        <ScrollReveal key={index} animation="zoomIn" delay={index * 0.05} className={styles.imageWrapper}>
                             <img src={img.src} alt={`VIP UZBE ${img.cat} experience ${index + 1}`} className={styles.image} loading="lazy" />
                             <div className={styles.imgOverlay}>
-                                <span>VIP UZBE Experience</span>
+                                <span>VIP UZBE {dict.general.experience}</span>
                             </div>
-                        </div>
+                        </ScrollReveal>
                     ))}
                 </div>
             </div>

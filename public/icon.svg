@@ -1,0 +1,35 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#1a1a24"/>
+      <stop offset="100%" stop-color="#08080c"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe9a3"/>
+      <stop offset="45%" stop-color="#f5d061"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- Thin gold frame (kept inside maskable safe zone) -->
+  <rect x="86" y="86" width="340" height="340" rx="46" fill="none" stroke="url(#gold)" stroke-width="3" opacity="0.55"/>
+
+  <!-- Crown -->
+  <g transform="translate(256 222)">
+    <path d="M -96 36 L -110 -54 L -52 -8 L 0 -78 L 52 -8 L 110 -54 L 96 36 Z"
+          fill="url(#gold)" stroke="#8a6508" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="-110" cy="-54" r="11" fill="url(#gold)"/>
+    <circle cx="0" cy="-78" r="13" fill="url(#gold)"/>
+    <circle cx="110" cy="-54" r="11" fill="url(#gold)"/>
+    <rect x="-96" y="44" width="192" height="20" rx="6" fill="url(#gold)"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="256" y="356" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="62" font-weight="700" letter-spacing="6" fill="url(#gold)">VIP</text>
+  <text x="256" y="404" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="30" font-weight="600" letter-spacing="14" fill="#e8e0c8">UZBE</text>
+</svg>

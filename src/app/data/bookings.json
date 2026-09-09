@@ -1,0 +1,29 @@
+[
+  {
+    "customerName": "Test Guest",
+    "email": "test@vipuzbe.com",
+    "phone": "+998901234567",
+    "checkIn": "2024-12-25",
+    "checkOut": "2024-12-27",
+    "guests": 2,
+    "roomType": "deluxe-suite",
+    "totalPrice": 1100,
+    "id": "BK-381320",
+    "status": "paid",
+    "createdAt": "2026-01-13T07:29:41.320Z"
+  },
+  {
+    "customerName": "yusuf",
+    "email": "usmonovyusuf693@gmail.com",
+    "phone": "+998 99 417 28 78",
+    "checkIn": "2026-04-04",
+    "checkOut": "2027-12-12",
+    "guests": 2,
+    "roomType": "heritage",
+    "paymentMethod": "click",
+    "totalPrice": 1542500,
+    "id": "BK-835783",
+    "status": "paid",
+    "createdAt": "2026-01-17T09:23:55.783Z"
+  }
+]
