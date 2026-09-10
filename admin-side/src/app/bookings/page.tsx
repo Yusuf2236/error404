@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { Booking } from "@/lib/db";
 import { useTranslation } from "@/lib/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export default function AdminBookings() {
     const { t } = useTranslation();
@@ -12,7 +13,7 @@ export default function AdminBookings() {
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("all");
 
-    const fetchBookings = async () => {
+    const fetchBookings = useCallback(async () => {
         try {
             const response = await fetch('/api/bookings', { cache: 'no-store' });
             if (response.ok) {
@@ -24,18 +25,35 @@ export default function AdminBookings() {
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
 
     useEffect(() => {
-        fetchBookings();
+        let active = true;
+        fetch('/api/bookings', { cache: 'no-store' })
+            .then(res => res.ok ? res.json() : [])
+            .then(data => {
+                if (active) {
+                    setBookings(data);
+                    setLoading(false);
+                }
+            })
+            .catch(error => {
+                console.error("Failed to fetch bookings", error);
+                if (active) setLoading(false);
+            });
 
         // Live bookings: a guest reserves on the public site → the shared DB file
         // changes → SSE pushes "update" → the list refreshes with no manual reload.
         const events = new EventSource('/api/events');
-        events.addEventListener('update', () => fetchBookings());
+        events.addEventListener('update', () => {
+            void fetchBookings();
+        });
 
-        return () => events.close();
-    }, []);
+        return () => {
+            active = false;
+            events.close();
+        };
+    }, [fetchBookings]);
 
     const filteredBookings = bookings
         .filter(b => {
@@ -138,7 +156,7 @@ export default function AdminBookings() {
                                         <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{booking.email}</div>
                                     </td>
                                     <td>
-                                        <div style={{ textTransform: 'capitalize', fontWeight: 600 }}>{t(booking.roomType.replace(/-([a-z])/g, (g) => g[1].toUpperCase()) as any)}</div>
+                                        <div style={{ textTransform: 'capitalize', fontWeight: 600 }}>{t(booking.roomType.replace(/-([a-z])/g, (g) => g[1].toUpperCase()) as keyof typeof translations['en']) || booking.roomType}</div>
                                         <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{booking.guests} {t('guests')}</div>
                                     </td>
                                     <td>
@@ -148,7 +166,7 @@ export default function AdminBookings() {
                                     <td>
                                         <div style={{ fontWeight: 700, color: '#f8fafc' }}>${booking.totalPrice?.toLocaleString()}</div>
                                         <div style={{ fontSize: '0.7rem', color: '#94a3b8', textTransform: 'uppercase' }}>
-                                            {booking.paymentMethod ? `${t('via')} ${t(booking.paymentMethod.toLowerCase() as any)}` : '-'}
+                                            {booking.paymentMethod ? `${t('via')} ${t(booking.paymentMethod.toLowerCase() as keyof typeof translations['en'])}` : '-'}
                                         </div>
                                     </td>
                                     <td>
@@ -166,7 +184,7 @@ export default function AdminBookings() {
                                     </td>
                                     <td>
                                         <span className={`${styles.status} ${styles[booking.status]}`}>
-                                            {t(booking.status as any) || booking.status}
+                                            {t(booking.status as keyof typeof translations['en']) || booking.status}
                                         </span>
                                     </td>
                                     <td>

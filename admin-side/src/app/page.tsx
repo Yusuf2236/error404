@@ -1,17 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./page.module.css";
-import Link from "next/link";
 import { useTranslation } from "@/lib/LanguageContext";
+import { translations } from "@/lib/translations";
+
+interface DashboardStats {
+    totalBookings: number;
+    activeBookings: number;
+    pendingBookings: number;
+    totalRevenue: number;
+    paymentMethods: Record<string, number>;
+}
 
 export default function AdminDashboard() {
     const { t } = useTranslation();
-    const [stats, setStats] = useState<any>(null);
+    const [stats, setStats] = useState<DashboardStats | null>(null);
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
 
-    const fetchStats = async () => {
+    const fetchStats = useCallback(async () => {
         try {
             const response = await fetch('/api/stats', { cache: 'no-store' });
             const data = await response.json();
@@ -22,18 +30,35 @@ export default function AdminDashboard() {
             setLoading(false);
             setRefreshing(false);
         }
-    };
+    }, []);
 
     useEffect(() => {
-        fetchStats();
+        let active = true;
+        fetch('/api/stats', { cache: 'no-store' })
+            .then(res => res.json())
+            .then(data => {
+                if (active) {
+                    setStats(data);
+                    setLoading(false);
+                }
+            })
+            .catch(err => {
+                console.error("Failed to fetch stats", err);
+                if (active) setLoading(false);
+            });
 
         // Live dashboard: any booking change (new reservation, status update,
         // cancellation) pushes an SSE "update" → revenue and counters refresh live.
         const events = new EventSource('/api/events');
-        events.addEventListener('update', () => fetchStats());
+        events.addEventListener('update', () => {
+            void fetchStats();
+        });
 
-        return () => events.close();
-    }, []);
+        return () => {
+            active = false;
+            events.close();
+        };
+    }, [fetchStats]);
 
     const handleRefresh = () => {
         setRefreshing(true);
@@ -133,7 +158,7 @@ export default function AdminDashboard() {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         {Object.entries(stats.paymentMethods).map(([method, amount]) => (
                             <div key={method} style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                                <span style={{ textTransform: 'capitalize', fontWeight: 600 }}>{t(method.toLowerCase() as any)}</span>
+                                <span style={{ textTransform: 'capitalize', fontWeight: 600 }}>{t(method.toLowerCase() as keyof typeof translations['en'])}</span>
                                 <span style={{ color: '#ffd700' }}>${(amount as number).toLocaleString()}</span>
                             </div>
                         ))}
@@ -158,14 +183,14 @@ export default function AdminDashboard() {
                         <div className={styles.activityDot} style={{ background: '#3b82f6' }}></div>
                         <div className={styles.activityContent}>
                             <p>{t('newIntelligence')}: <strong>BK-9421</strong> {t('receivedFrom')} John Smith</p>
-                            <span>15 {t('minsAgo' as any)} • {t('webPortal')}</span>
+                            <span>{t('fifteenMinsAgo')} • {t('webPortal')}</span>
                         </div>
                     </div>
                     <div className={styles.activityItem}>
                         <div className={styles.activityDot} style={{ background: '#f59e0b' }}></div>
                         <div className={styles.activityContent}>
                             <p>{t('staffAssigned')}: <strong>Jamshid</strong> {t('biriktirildi')} (Amir Temur Heritage)</p>
-                            <span>1 {t('hourAgo' as any)} • {t('adminAction')}</span>
+                            <span>{t('oneHourAgo')} • {t('adminAction')}</span>
                         </div>
                     </div>
                 </div>

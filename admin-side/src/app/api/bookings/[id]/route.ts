@@ -26,7 +26,7 @@ export async function PATCH(
         }
 
         return NextResponse.json(updatedBooking);
-    } catch (error) {
+    } catch {
         return NextResponse.json(
             { error: 'Failed to update booking' },
             { status: 500 }

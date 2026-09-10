@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { Booking } from "@/lib/db";
 
@@ -8,7 +8,7 @@ export default function AdminPayments() {
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [loading, setLoading] = useState(true);
 
-    const fetchBookings = async () => {
+    const fetchBookings = useCallback(async () => {
         try {
             const response = await fetch('/api/bookings');
             if (response.ok) {
@@ -22,10 +22,25 @@ export default function AdminPayments() {
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
 
     useEffect(() => {
-        fetchBookings();
+        let active = true;
+        fetch('/api/bookings')
+            .then(res => res.ok ? res.json() : [])
+            .then(data => {
+                if (active) {
+                    setBookings(data.filter((b: Booking) => b.status === 'confirmed'));
+                    setLoading(false);
+                }
+            })
+            .catch(error => {
+                console.error("Failed to fetch bookings", error);
+                if (active) setLoading(false);
+            });
+        return () => {
+            active = false;
+        };
     }, []);
 
     const processPayment = async (id: string) => {

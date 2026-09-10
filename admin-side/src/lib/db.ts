@@ -42,7 +42,7 @@ export const getBookings = (): Booking[] => {
     const fileContent = fs.readFileSync(DB_PATH, 'utf-8');
     try {
         return JSON.parse(fileContent);
-    } catch (error) {
+    } catch {
         return [];
     }
 };

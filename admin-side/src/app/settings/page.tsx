@@ -3,6 +3,7 @@
 import styles from "./page.module.css";
 import adminStyles from "../admin.module.css";
 import { useTranslation } from "@/lib/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export default function SettingsPage() {
     const { t } = useTranslation();
@@ -24,7 +25,7 @@ export default function SettingsPage() {
                         <label>{t('operationalCurrency')}</label>
                         <select defaultValue="USD">
                             <option value="USD">USD ($)</option>
-                            <option value="UZS">UZS (So'm)</option>
+                            <option value="UZS">UZS (So&apos;m)</option>
                         </select>
                     </div>
                     <button className={styles.saveBtn}>{t('synchronizeChanges')}</button>
@@ -49,7 +50,7 @@ export default function SettingsPage() {
                             <div key={method} className={styles.paymentItem}>
                                 <div className={styles.paymentInfo}>
                                     <span style={{ fontWeight: 700 }}>{method}</span>
-                                    <span style={{ fontSize: '0.75rem', color: '#64748b' }}>{t(method.toLowerCase() as any)} - {t('operational')}</span>
+                                    <span style={{ fontSize: '0.75rem', color: '#64748b' }}>{t(method.toLowerCase() as keyof typeof translations['en'])} - {t('operational')}</span>
                                 </div>
                                 <label className={styles.switch}>
                                     <input type="checkbox" defaultChecked />

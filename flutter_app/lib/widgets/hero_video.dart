@@ -33,7 +33,8 @@ class _HeroVideoBackgroundState extends State<HeroVideoBackground> {
       await c.setVolume(0);
       await c.play();
       if (mounted) setState(() => _ready = true);
-    } catch (_) {
+    } catch (e) {
+      debugPrint('HeroVideoBackground init error: $e');
       // keep showing the fallback image
     }
   }

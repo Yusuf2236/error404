@@ -5,7 +5,7 @@ export async function GET() {
     try {
         const occupied = getOccupiedRooms();
         return NextResponse.json({ occupied });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to fetch availability' }, { status: 500 });
     }
 }

@@ -4,14 +4,8 @@ import { getBookings, addBooking } from '@/lib/db';
 export async function GET() {
     try {
         const bookings = getBookings();
-        // Remove sensitive PII before sending to client, but keep paymentMethod for display
-        const safeBookings = bookings.map(({ email, phone, ...rest }) => ({
-            ...rest,
-            email: undefined,
-            phone: undefined
-        }));
-        return NextResponse.json(safeBookings);
-    } catch (error) {
+        return NextResponse.json(bookings);
+    } catch {
         return NextResponse.json({ error: 'Failed to fetch bookings' }, { status: 500 });
     }
 }

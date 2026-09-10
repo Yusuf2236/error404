@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useSyncExternalStore } from 'react';
 import { Language, translations } from './translations';
 
 type LanguageContextType = {
@@ -11,19 +11,28 @@ type LanguageContextType = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-    const [language, setLanguage] = useState<Language>('uz');
+function subscribe(callback: () => void) {
+    window.addEventListener('storage', callback);
+    return () => window.removeEventListener('storage', callback);
+}
 
-    // Persistence
-    useEffect(() => {
-        const savedLang = localStorage.getItem('admin_lang') as Language;
-        if (savedLang && (savedLang === 'uz' || savedLang === 'ru' || savedLang === 'en')) {
-            setLanguage(savedLang);
-        }
-    }, []);
+function getSnapshot(): Language {
+    const saved = localStorage.getItem('admin_lang') as Language;
+    return (saved === 'uz' || saved === 'ru' || saved === 'en') ? saved : 'uz';
+}
+
+function getServerSnapshot(): Language {
+    return 'uz';
+}
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+    const storeLang = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+    const [overrideLang, setOverrideLang] = useState<Language | null>(null);
+
+    const language = overrideLang ?? storeLang;
 
     const handleSetLanguage = (lang: Language) => {
-        setLanguage(lang);
+        setOverrideLang(lang);
         localStorage.setItem('admin_lang', lang);
     };
 

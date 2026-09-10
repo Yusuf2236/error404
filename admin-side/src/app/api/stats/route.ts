@@ -12,7 +12,7 @@ export async function GET() {
                 'Cache-Control': 'no-store, no-cache, must-revalidate',
             },
         });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to fetch statistics' }, { status: 500 });
     }
 }
